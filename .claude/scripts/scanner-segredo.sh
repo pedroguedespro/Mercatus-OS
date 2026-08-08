@@ -20,6 +20,15 @@ cd "$(git rev-parse --show-toplevel 2>/dev/null)" || { echo "nao e um repositori
 ACHADOS=0
 reportar() { echo "  [$1] $2"; ACHADOS=$((ACHADOS+1)); }
 
+# ---------------------------------------------------------------------------
+# Regra unica de placeholder, usada por TODAS as camadas de deteccao.
+# Estava duplicada e divergente: o detector de JSON conhecia YOUR_ e o
+# detector generico nao, entao `YOUR_API_KEY=...` dava falso positivo num
+# e passava no outro. Falso positivo e tao perigoso quanto falso negativo:
+# a pessoa aprende a ignorar o aviso.
+# ---------------------------------------------------------------------------
+PLACEHOLDER="(SEU_|seu-|SUA_|YOUR_|CHANGE_?ME|REPLACE_?ME|xxx|XXX|<|>|exemplo|example|placeholder|aqui|dummy|fake|sample|test_?only|TODO|FIXME|\\.\\.\\.)"
+
 STAGED=$(git diff --cached --name-only --diff-filter=ACM 2>/dev/null)
 if [ -z "$STAGED" ]; then
   echo "Nada staged pra escanear."
@@ -78,8 +87,10 @@ while IFS= read -r f; do
       while IFS=: read -r linha _; do
         [ -z "$linha" ] && continue
         reportar "CHAVE" "$f:$linha — campo de credencial preenchido em arquivo de config"
-      done < <(grep -nIE "[\"']?(access_token|refresh_token|id_token|client_secret|private_key|api_key|apiKey|secret|password|senha)[\"']?[[:space:]]*[:=][[:space:]]*[\"'][^\"']{12,}[\"']" "$f" 2>/dev/null \
-                | grep -vEi "(SEU_|seu-|xxx|XXX|<|exemplo|example|placeholder|aqui|YOUR_|CHANGE_?ME|dummy|fake|test_?only)" | head -3)
+      # Aceita valor COM e SEM aspas. YAML e TOML usam escalar solto:
+      # `access_token: ya29.a0ARrdaM9x...` nao tem aspas e passava batido.
+      done < <(grep -nIE "[\"']?(access_token|refresh_token|id_token|client_secret|client_id|private_key|api_key|apiKey|secret|password|senha|token)[\"']?[[:space:]]*[:=][[:space:]]*[\"']?[^\"'[:space:],}\)]{12,}" "$f" 2>/dev/null \
+                | grep -vEi "$PLACEHOLDER" | head -3)
       ;;
   esac
 
@@ -97,19 +108,17 @@ while IFS= read -r f; do
   while IFS=: read -r linha resto; do
     [ -z "$linha" ] && continue
     # mostra so os 8 primeiros chars do que casou, nunca o segredo inteiro
-    amostra=$(echo "$resto" | grep -oE "(sk-[A-Za-z0-9]{20,}|sk_live_[A-Za-z0-9]{16,}|ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|AIza[A-Za-z0-9_-]{30,}|xox[baprs]-[A-Za-z0-9-]{10,}|AKIA[A-Z0-9]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----)" | head -1 | cut -c1-8)
+    amostra=$(echo "$resto" | grep -oE "(sk-[A-Za-z0-9_-]{20,}|sk_live_[A-Za-z0-9]{16,}|ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|AIza[A-Za-z0-9_-]{30,}|xox[baprs]-[A-Za-z0-9-]{10,}|AKIA[A-Z0-9]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----)" | head -1 | cut -c1-8)
     reportar "CHAVE" "$f:$linha — string com formato de credencial ($amostra…)"
-  done < <(grep -nIE "(sk-[A-Za-z0-9]{20,}|sk_live_[A-Za-z0-9]{16,}|ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|AIza[A-Za-z0-9_-]{30,}|xox[baprs]-[A-Za-z0-9-]{10,}|AKIA[A-Z0-9]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----)" "$f" 2>/dev/null | head -3)
+  done < <(grep -nIE "(sk-[A-Za-z0-9_-]{20,}|sk_live_[A-Za-z0-9]{16,}|ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|AIza[A-Za-z0-9_-]{30,}|xox[baprs]-[A-Za-z0-9-]{10,}|AKIA[A-Z0-9]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----)" "$f" 2>/dev/null | head -3)
 
   # --- 4. Variavel de ambiente com valor preenchido ------------------------
   # Pega o caso de alguem colar uma chave num .md ou .json de config.
   while IFS=: read -r linha resto; do
     [ -z "$linha" ] && continue
-    case "$resto" in
-      *SEU_*|*seu-*|*xxx*|*XXX*|*'<'*|*exemplo*|*example*|*placeholder*|*aqui*) continue ;;
-    esac
     reportar "CHAVE" "$f:$linha — variavel de credencial com valor preenchido"
-  done < <(grep -nIE "^[^#]*\b[A-Z_]*(API_KEY|SECRET|TOKEN|PASSWORD|SENHA|PRIVATE_KEY|ACCESS_KEY)\b[[:space:]]*[=:][[:space:]]*['\"]?[A-Za-z0-9_/+.-]{16,}" "$f" 2>/dev/null | head -3)
+  done < <(grep -nIE "^[^#]*\b[A-Z_]*(API_KEY|SECRET|TOKEN|PASSWORD|SENHA|PRIVATE_KEY|ACCESS_KEY)\b[[:space:]]*[=:][[:space:]]*['\"]?[A-Za-z0-9_/+.-]{16,}" "$f" 2>/dev/null \
+            | grep -vEi "$PLACEHOLDER" | head -3)
 
 done <<< "$STAGED"
 
