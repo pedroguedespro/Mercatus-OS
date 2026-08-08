@@ -1,97 +1,196 @@
 ---
 name: syncar
 description: >
-  Salva o estado atual do workspace no GitHub (commit + push).
-  Use quando quiser garantir que o trabalho está seguro, ao final de uma sessão produtiva,
-  ou quando o usuário disser "salva no github", "faz commit", "synca", "syncar",
-  "backup no github", "salva tudo", "manda pro github".
-  Também configura o git pela primeira vez se ainda não estiver configurado.
+  Salva o trabalho no GitHub, rodando um scanner de credencial antes e abortando
+  se achar. Use quando o usuário disser "salva no github", "faz commit", "synca",
+  "syncar", "backup", "salva tudo", "manda pro github", ou ao fim de uma sessão
+  produtiva. Também conecta o repositório ao GitHub pela primeira vez.
 ---
 
-# /syncar — Salvar no GitHub
+# /syncar — salvar no GitHub
 
-## Verificação inicial
+**Nada sobe sozinho neste sistema.** Isso é de propósito: um hook de auto-commit dispara ao fim de *cada resposta*, não de cada sessão — numa entrevista de trinta perguntas seriam trinta commits, e falhas ficariam invisíveis. Salvar é aqui, explícito.
 
-Rode os dois comandos pra entender o estado atual:
+## Passo 1 — entender o estado
 
 ```bash
 git status --short
-git remote get-url origin 2>/dev/null
+git remote -v
+git branch --show-current
 ```
+
+Três cenários possíveis, e o **B** é o que mais engana.
 
 ---
 
-## Fluxo A: sem remote configurado (primeira vez)
+## Cenário A — sem remote nenhum
 
-Se `git remote get-url origin` não retornar nada, o aluno ainda não conectou ao GitHub.
+`git remote -v` não retorna nada. A pessoa está trabalhando 100% local, sem backup.
 
-Diga:
-
-> "Seu workspace ainda não está conectado a um repositório no GitHub.
->
-> Pra conectar, você precisa de um repositório no GitHub. Se ainda não criou:
-> 1. Acesse github.com/new
-> 2. Crie um repositório (pode ser privado, nome sugerido: `meu-negocio` ou `workspace`)
-> 3. Não inicialize com README — deixa vazio
-> 4. Me passa o link do repositório criado (ex: https://github.com/seunome/workspace)"
-
-Após receber o link, configure e envie:
-
-```bash
-git remote add origin [link]
-git branch -M main
-git push -u origin main
-```
-
-Confirme:
-
-> "Conectado. Seu workspace está agora em [link].
-> A partir de agora, o sistema vai sincronizar automaticamente quando você terminar de trabalhar."
-
----
-
-## Fluxo B: remote configurado, tem mudanças
-
-Se `git status` mostrar arquivos modificados, liste o que vai ser salvo e faça o commit:
+Pergunte se ela quer conectar agora. Se **não** quiser, respeite: commit local continua funcionando e o trabalho fica versionado na máquina dela.
 
 ```bash
 git add -A
-git commit -m "sync: [descrição curta do que foi feito]"
+# rode o scanner (Passo 2) ANTES do commit
+git commit -m "sync: <o que foi feito>"
+```
+
+> "Salvo no seu computador. Ainda sem cópia na nuvem — se a máquina der problema, isso se perde. Quando quiser conectar ao GitHub, é só falar."
+
+Se **quiser** conectar, vá pro Passo 3.
+
+---
+
+## Cenário B — o remote aponta pro repositório errado ⚠️
+
+`origin` aponta pro repositório **do Mercatus OS**, não pro da pessoa. Acontece quando ela clonou direto em vez de usar o template do GitHub.
+
+**Como reconhecer com segurança.** Não basta olhar o `git remote -v` de olho: a mesma origem aparece em três formatos diferentes, e existe `pushurl` separado do `url`.
+
+```bash
+git remote get-url origin
+git remote get-url --push origin
+```
+
+Compare os dois, normalizados (tanto faz `https://github.com/dono/repo.git`, `git@github.com:dono/repo.git` ou sem `.git` no fim — é o mesmo lugar). Extraia `dono/repo` e decida:
+
+- `dono/repo` é o repositório canônico do Mercatus OS → **é o Cenário B**, corrija
+- `dono` é a própria pessoa → é o repositório dela, siga normal
+- **qualquer outra coisa** → não adivinhe. Mostre a URL e pergunte: *"esse repositório é seu?"* Um remote de terceiro não pode passar por "próprio" no silêncio.
+
+Se `url` e `pushurl` divergirem, trate como suspeito e pergunte — é exatamente a configuração que faz o `push` ir pra um lugar diferente do `fetch`.
+
+**Não deixe passar.** O primeiro `push` tentaria escrever no repositório do produto — vai falhar por falta de permissão, ou pior, se ela tiver acesso, vai poluir o produto com o trabalho dela.
+
+Corrija na hora:
+
+```bash
+git remote rename origin upstream
+```
+
+> "Ajustei uma coisa: o repositório estava apontando pro Mercatus OS original, não pro seu. Renomeei pra `upstream` — assim você continua podendo puxar atualizações do sistema, mas o seu trabalho não vai tentar ir pra lá."
+
+Agora está no Cenário A. Pergunte se ela quer criar o repositório dela.
+
+---
+
+## Cenário C — remote próprio configurado
+
+Segue normal. Vá pro Passo 2.
+
+---
+
+## Passo 2 — o scanner (nunca pule)
+
+```bash
+git add -A
+bash .claude/scripts/scanner-segredo.sh
+```
+
+**Se sair com código 1, PARE. Não commite.** Mostre o que ele achou e conduza a correção — o próprio scanner imprime as três saídas possíveis.
+
+O scanner olha só o que está *staged*, não a pasta inteira. `inbox/importacao/` é ignorado pelo git, então material cru nem chega ali — o que ele pega é o caso de a pessoa ter **movido** um arquivo importado pra uma área versionada sem notar que tinha credencial dentro.
+
+Se ele achar uma chave que **já é real e já foi usada**, a primeira coisa não é apagar o arquivo: é **revogar a chave** no painel do serviço. Uma chave que passou pelo disco de alguém já deve ser considerada comprometida.
+
+Passando limpo:
+
+```bash
+git commit -m "sync: <descrição curta>"
 git push
 ```
 
-Para a descrição do commit, use o que foi feito na sessão (ex: "sync: nova proposta cliente X", "sync: carrossel episódio 42", "sync: atualização de contexto"). Se não souber o que colocar, use `sync: atualizações do dia`.
-
-Após o push, confirme:
-
-> "Salvo. Seu trabalho está seguro em [url do remote]."
+Descrição vem do que foi feito na sessão: `sync: proposta do cliente X`, `sync: contexto da empresa Y`. Sem ideia? `sync: atualizações do dia`.
 
 ---
 
-## Fluxo C: sem mudanças
+## Passo 3 — conectar ao GitHub pela primeira vez
 
-Se `git status` não mostrar nada:
+Só entre aqui se a pessoa disse que quer. Uma etapa por vez, esperando resposta.
 
-> "Tudo já está sincronizado. Nenhuma mudança nova pra salvar."
+**3.1 — Ela tem conta no GitHub?** Se não: github.com/signup. É grátis. Explique em uma linha o que é: um lugar na internet que guarda o histórico do seu trabalho, com cada versão salva. Se ela não quiser criar conta, volte pro Cenário A sem insistir.
+
+**3.2 — O git está instalado e autenticado?**
+
+```bash
+git --version
+git config --global user.name
+git config --global user.email
+```
+
+Faltando nome ou email:
+```bash
+git config --global user.name "Nome da Pessoa"
+git config --global user.email "email@dela.com"
+```
+
+**3.3 — Autenticação.** No Windows, o Git for Windows já vem com o **Git Credential Manager**: no primeiro `push` ele abre o navegador, a pessoa faz login no GitHub e pronto. Sem token, sem SSH, sem copiar código.
+
+> **Não sugira criar Personal Access Token como primeiro caminho.** É o mais difícil e o que mais trava quem está começando. PAT e SSH são fallback, só se o GCM não estiver disponível.
+
+Confirme se o GCM está lá:
+```bash
+git config --global credential.helper
+```
+Se retornar `manager` ou `manager-core`, está resolvido — o navegador cuida do resto.
+
+No Mac, o padrão é `osxkeychain` + login no navegador. No Linux, aí sim pode precisar de PAT ou SSH — pergunte antes de assumir.
+
+**3.4 — Criar o repositório.**
+
+> "Vá em github.com/new. Nome pode ser `meu-sistema`. Marque **Private** — o que vai aqui dentro é o contexto do seu negócio. **Não** marque nenhuma das caixas de inicializar com README. Depois me manda o link."
+
+**3.5 — Conectar, e então voltar pro Passo 2.**
+
+```bash
+git remote add origin <link>
+git branch -M main
+```
+
+> **Não faça `push` daqui.** Configurar o remote não commita nada — se a pessoa tem trabalho não commitado (e ela quase sempre tem, é por isso que chamou o `/syncar`), um `push` agora enviaria um repositório vazio e deixaria tudo pra trás.
+
+**Volte ao Passo 2:** `git add -A`, scanner, commit. Só então:
+
+```bash
+git push -u origin main
+```
+
+> "Pronto. Seu trabalho está em <link>, num repositório privado que só você vê.
+> Daqui pra frente, sempre que quiser salvar é só falar `/syncar`."
 
 ---
 
-## Fluxo D: erro no push
+## Se o push falhar
 
-Se o push falhar (credenciais, conexão, etc.), mostre o erro de forma simples:
+Nunca mostre só o erro. Traduza e diga o que fazer.
 
-> "Não consegui enviar pro GitHub. O erro foi: [mensagem]
->
-> Causas mais comuns:
-> - Sem conexão com internet
-> - Precisa configurar autenticação no GitHub (token ou SSH)
->
-> Se quiser resolver agora, me diz e eu te ajudo passo a passo."
+| O que apareceu | O que é | O que fazer |
+|---|---|---|
+| `Authentication failed` / `could not read Username` | Autenticação | Ver 3.3. No Windows, o GCM deveria abrir o navegador |
+| `Permission denied` / `403` | Sem acesso àquele repositório | Provavelmente é o Cenário B — confira `git remote -v` |
+| `rejected` / `non-fast-forward` | Alguém (ou outro computador seu) enviou algo antes | `git pull --rebase` e tenta de novo |
+| `Could not resolve host` | Sem internet | Commit local já foi feito, nada se perdeu. Push depois |
+| `repository not found` | Link errado ou repositório apagado | Conferir o link em `git remote -v` |
+
+---
+
+## Se tem sócio no repositório
+
+Cada pessoa trabalha na **própria branch** — a bancada dela. Todo mundo enxerga a de todo mundo, e a `main` é a mesa comum, onde só entra o que já foi revisado.
+
+```bash
+git checkout -b <nome-da-pessoa>
+git push -u origin <nome-da-pessoa>
+```
+
+Pra dar acesso: no GitHub, Settings → Collaborators → Add people.
 
 ---
 
 ## Regras
 
-- Nunca commitar `.env`, `.env.local` ou qualquer arquivo com chaves secretas
-- Tom direto — não explica git em detalhes a não ser que o usuário pergunte
-- Se der erro, sempre mostrar o que fazer a seguir — nunca só mostrar o erro
+- **Scanner antes de todo commit.** Sem exceção, mesmo que a pessoa tenha pressa.
+- **Nunca `git push --force`** sem a pessoa entender que isso apaga histórico do servidor.
+- Tom direto. Não explica git em detalhe a menos que perguntem.
+- Erro sempre vem com o próximo passo, nunca sozinho.
+- Se algo der errado no meio, diga o que **já** foi salvo e o que não foi. "Commitei mas não consegui enviar" é informação útil; "deu erro" não é.

@@ -1,46 +1,123 @@
-# Variáveis de ambiente (API keys, tokens — NUNCA commitar)
+# Mercatus OS — .gitignore
+#
+# Escrito do zero pro produto. NAO e copia de outro repositorio.
+# Um .gitignore generico costuma bloquear `.env.example` e `contas.yaml`, que
+# sao exatamente os dois templates que o usuario PRECISA receber pra
+# configurar as skills. Aqui eles passam de proposito.
+#
+# Regra de ouro do git: nao da pra "des-ignorar" um arquivo se a PASTA dele
+# estiver ignorada. Por isso todas as negacoes abaixo usam pastas nao-ignoradas.
+
+# ---------------------------------------------------------------------------
+# Credenciais — bloqueia o real, libera o exemplo
+# ---------------------------------------------------------------------------
 .env
 .env.local
 .env.*
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
 
-# Arquivo gerado pelo /setup com MCPs específicos do usuário
+# Herdado do kit: arquivo de trabalho onde credencial de MCP e colada
+# durante a configuracao.
 _configurar-mcps.md
 
-# Outputs de renderização (binários pesados)
-*.png
-
-# Arquivos de dados do usuário (CSVs, planilhas, etc)
-dados/*.csv
-dados/*.xlsx
-dados/*.xls
-dados/*.txt
-dados/*.pdf
-dados/*.json
-!dados/README.md
-
-# Pastas de trabalho do usuário (geradas pelo /setup, conteúdo pessoal)
-clientes/
-propostas/
-conteudo/
-projetos/
-briefings/
-trabalho/
-estudos/
-publicacoes/
-anotacoes/
-curriculo/
-tarefas.md
-
-# Skills instaladas pelo usuário (específicas do negócio dele).
-# O kit distribuído NÃO leva skill nenhuma aqui — só templates em templates/skills/.
-# .claude/commands/ e .claude/settings.json continuam versionados (são do kit).
-.claude/skills/
-
-# Arquivos gerados pelo uso/registro das skills (conteúdo pessoal, nunca no kit)
-automacoes-dm.md
-prioridades.md
+# contas.yaml guarda cliente, property ID e dominio quando preenchido.
+# Bloqueado em qualquer lugar; liberado SO no caminho estrito de template.
 contas.yaml
+**/contas.yaml
+!templates/**/contas.yaml
 
-# Sistema
-.DS_Store
+# Chaves e certificados
+*.pem
+*.key
+*.pfx
+*.p12
+*.cer
+*.crt
+service-account*.json
+credentials*.json
+client_secret*.json
+*.credentials.json
+
+# Config local de ferramenta (pode conter token)
+.wrangler/
+**/.claude/settings.local.json
+.claude/settings.local.json
+
+# ---------------------------------------------------------------------------
+# Importacao — material cru da empresa da pessoa
+# ---------------------------------------------------------------------------
+# A pessoa despeja aqui contrato, planilha, export de CRM, print de painel.
+# Nada disso e candidato a commit ate ser revisado e PROMOVIDO pra uma area
+# versionada. Isso NAO substitui o scanner do /syncar — sao camadas diferentes.
+inbox/importacao/*
+!inbox/importacao/.gitkeep
+!inbox/importacao/LEIA-ME.md
+
+# ---------------------------------------------------------------------------
+# Estado de sessao (nao e segredo, mas nao serve pra ninguem)
+# ---------------------------------------------------------------------------
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.impeccable/
+.codex-tmp/
+
+# Plugins de calendario guardam URL secreta de iCal / token OAuth.
+# Bloqueado proativamente, mesmo antes de instalado.
+.obsidian/plugins/*/data.json
+!.obsidian/plugins/*/manifest.json
+
+# ---------------------------------------------------------------------------
+# Dados brutos e pesados
+# ---------------------------------------------------------------------------
+dados/*
+!dados/.gitkeep
+!dados/LEIA-ME.md
+!dados/README.md
+*.csv
+*.xlsx
+*.xls
+*.mp4
+*.mov
+*.wav
+*.zip
+
+# ---------------------------------------------------------------------------
+# DIVERGENCIA DELIBERADA DO KIT — decidido em 07/08/2026
+# ---------------------------------------------------------------------------
+# O kit CCOS ignorava `.claude/skills/` e todas as pastas de trabalho
+# (clientes/, propostas/, conteudo/, projetos/, briefings/, estudos/,
+# anotacoes/, publicacoes/, trabalho/, curriculo/, tarefas.md). Ou seja:
+# versionava o SISTEMA e nao o TRABALHO.
+#
+# Aqui NAO ignoramos, de proposito. Duas razoes:
+#
+#   1. Com `.claude/skills/` ignorado, quem troca de maquina ou reclona
+#      perde todas as ferramentas que criou. O backup protegeria menos do
+#      que a pessoa imagina.
+#   2. Com as pastas de trabalho ignoradas, o /syncar salva quase nada —
+#      e o socio nao enxerga o que foi produzido.
+#
+# O que protege aqui nao e esconder pasta, e o scanner de segredo do
+# /syncar, que barra credencial no que vai ser commitado, e o
+# `inbox/importacao/` ignorado, onde mora o material cru.
+#
+# NAO reintroduzir essas regras sem reverter esta decisao por escrito.
+
+# ---------------------------------------------------------------------------
+# Lixo de sistema e de build
+# ---------------------------------------------------------------------------
 node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.cache/
+dist/
+build/
