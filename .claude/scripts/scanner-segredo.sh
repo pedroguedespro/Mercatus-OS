@@ -30,6 +30,31 @@ N=$(echo "$STAGED" | wc -l)
 echo "Escaneando $N arquivo(s) staged..."
 echo
 
+# ---------------------------------------------------------------------------
+# 0. Repositorio git aninhado (gitlink) — comportamento verificado em 07/08/2026
+# ---------------------------------------------------------------------------
+# Skill instalada por `git clone` traz `.git/` propria. O `git add -A` entao
+# NAO versiona os arquivos dela: cria um gitlink (modo 160000), que e so um
+# ponteiro. Quem reclona recebe a pasta VAZIA e perde a ferramenta.
+# O git avisa ("Clones of the outer repository will not contain the contents
+# of the embedded repository"), mas o aviso passa batido no meio do output.
+while IFS= read -r gl; do
+  [ -z "$gl" ] && continue
+  reportar "GITLINK" "$gl — repositorio git aninhado; os arquivos NAO seriam versionados"
+done < <(git diff --cached --raw 2>/dev/null | awk '$2=="160000"{print $NF}')
+
+if [ "$ACHADOS" -gt 0 ]; then
+  echo
+  echo "  Como resolver:"
+  echo "    git rm --cached <pasta>"
+  echo "    rm -rf <pasta>/.git     # solta a skill do repositorio de origem"
+  echo "    git add <pasta>         # agora os arquivos entram de verdade"
+  echo
+  echo "  Instalar skill com 'git clone' sempre deixa .git/ pra tras. Use:"
+  echo "    git clone --depth 1 <url> <destino> && rm -rf <destino>/.git"
+  echo
+fi
+
 while IFS= read -r f; do
   [ -f "$f" ] || continue
 

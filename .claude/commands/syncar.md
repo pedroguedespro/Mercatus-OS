@@ -187,9 +187,23 @@ Pra dar acesso: no GitHub, Settings → Collaborators → Add people.
 
 ---
 
+## Dado de cliente — o que o scanner NÃO pega
+
+O scanner acha **credencial**. Ele não sabe distinguir sigilo comercial: contrato, lista de clientes, tabela de preços, CPF/CNPJ, planilha com nome e telefone de pessoa real. Nada disso tem formato reconhecível.
+
+E aqui o trabalho **é** versionado — proposta, briefing e contexto de cliente sobem de propósito, senão o backup não vale nada. Então a regra é operacional, não automática:
+
+- **Material bruto fica em `inbox/importacao/`**, que está fora do git. Contrato assinado, export de CRM, planilha de cliente: é ali que vivem.
+- **Sobe o destilado, não a fonte.** "Cliente X é do setor Y, ticket médio Z" pode subir. O PDF do contrato dele, não.
+- **Antes de commitar algo que identifica pessoa ou empresa de terceiro**, pare e confirme: *"isso tem nome de cliente / CPF / valor de contrato dentro. Pode subir pro repositório?"* Se houver sócio no repositório, lembre que ele vai ler.
+
+Isso vale mais quando o repositório é compartilhado: o que é normal você guardar sozinho pode não ser o que o teu cliente esperava que o teu sócio visse.
+
 ## Regras
 
 - **Scanner antes de todo commit.** Sem exceção, mesmo que a pessoa tenha pressa.
+- **Nunca sugira `git commit --no-verify`** pra contornar o hook. Ele existe porque credencial commitada não se apaga: fica no histórico mesmo depois do arquivo ser deletado.
+- **Skill instalada por `git clone` precisa perder o `.git/`**, senão vira ponteiro vazio e some do backup. O comando certo é `git clone --depth 1 <url> <destino> && rm -rf <destino>/.git`.
 - **Nunca `git push --force`** sem a pessoa entender que isso apaga histórico do servidor.
 - Tom direto. Não explica git em detalhe a menos que perguntem.
 - Erro sempre vem com o próximo passo, nunca sozinho.

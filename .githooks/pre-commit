@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Hook de pre-commit — Mercatus OS
+#
+# Por que existe: o /syncar roda o scanner, mas ele nao pode ser a UNICA
+# defesa. Qualquer `git commit` digitado a mao, por qualquer ferramenta ou
+# editor, passaria por fora dele. Este hook fecha esse caminho.
+#
+# Fica versionado no repositorio (nao em .git/hooks/, que nao viaja no clone).
+# Ativado por: git config core.hooksPath .githooks
+# O /setup e o instalar.html fazem isso; se alguem clonar na mao e esquecer,
+# o /syncar avisa.
+
+RAIZ="$(git rev-parse --show-toplevel 2>/dev/null)" || exit 0
+SCANNER="$RAIZ/.claude/scripts/scanner-segredo.sh"
+
+[ -f "$SCANNER" ] || exit 0
+
+echo "pre-commit: checando credencial e repositorio aninhado..."
+if ! bash "$SCANNER"; then
+  echo
+  echo "COMMIT BLOQUEADO pelo hook de pre-commit."
+  echo
+  echo "Se voce tem MESMO certeza de que e um falso positivo, o escape e:"
+  echo "  git commit --no-verify"
+  echo "Mas leia o que ele achou antes. Credencial commitada nao se apaga:"
+  echo "ela fica no historico mesmo depois de voce deletar o arquivo."
+  exit 1
+fi
+exit 0
