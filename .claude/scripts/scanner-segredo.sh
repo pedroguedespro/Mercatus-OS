@@ -64,8 +64,23 @@ while IFS= read -r f; do
       case "$f" in *.env.example) ;; *) reportar "ARQUIVO" "$f — arquivo .env real staged";; esac ;;
     *.pem|*.key|*.pfx|*.p12|*.cer|*.crt)
       reportar "ARQUIVO" "$f — chave ou certificado staged" ;;
-    *service-account*.json|*credentials*.json|*client_secret*.json)
+    *service-account*.json|*credential*.json|*credentials*.json|*client_secret*.json)
       reportar "ARQUIVO" "$f — arquivo de credencial de servico staged" ;;
+    *token.json|*token_cache*|*.tokens.json|*oauth*.json|*session.json)
+      reportar "ARQUIVO" "$f — token OAuth serializado staged" ;;
+  esac
+
+  # --- 1b. Campo de credencial dentro de JSON/YAML -------------------------
+  # Token OAuth quase nunca casa com prefixo conhecido (sk-, ghp_, AIza):
+  # e string opaca guardada num campo com nome obvio. Pega pelo campo.
+  case "$f" in
+    *.json|*.yaml|*.yml|*.toml)
+      while IFS=: read -r linha _; do
+        [ -z "$linha" ] && continue
+        reportar "CHAVE" "$f:$linha — campo de credencial preenchido em arquivo de config"
+      done < <(grep -nIE "[\"']?(access_token|refresh_token|id_token|client_secret|private_key|api_key|apiKey|secret|password|senha)[\"']?[[:space:]]*[:=][[:space:]]*[\"'][^\"']{12,}[\"']" "$f" 2>/dev/null \
+                | grep -vEi "(SEU_|seu-|xxx|XXX|<|exemplo|example|placeholder|aqui|YOUR_|CHANGE_?ME|dummy|fake|test_?only)" | head -3)
+      ;;
   esac
 
   # --- 2. contas.yaml preenchido fora de templates/ -------------------------
