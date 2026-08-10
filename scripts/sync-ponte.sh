@@ -9,7 +9,9 @@
 # No Windows, use scripts\sync-ponte.ps1 (junction, sem precisar de admin).
 
 set -uo pipefail
-cd "$(git rev-parse --show-toplevel 2>/dev/null || dirname "$0")/.." 2>/dev/null || cd "$(dirname "$0")/.."
+# git rev-parse ja devolve a RAIZ. Nao acrescentar /.. depois dela.
+RAIZ="$(git rev-parse --show-toplevel 2>/dev/null)" || RAIZ="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$RAIZ" || { echo "ERRO: nao achei a raiz do repositorio"; exit 1; }
 
 ORIGEM=".claude/skills"
 PONTE=".agents/skills"
@@ -31,9 +33,18 @@ if [ -L "$PONTE" ]; then
 fi
 
 if [ -d "$PONTE" ] && [ ! -L "$PONTE" ]; then
-  echo "aviso: $PONTE e uma pasta de verdade, nao um link."
-  echo "       Provavelmente sobrou de um fallback de copia."
-  rm -rf "$PONTE"
+  # NUNCA apagar pasta que nao foi esta ponte que criou. Se o usuario tiver
+  # skills proprias em .agents/skills, um rm -rf aqui destruiria o trabalho
+  # dele em silencio. So removemos o que tem a nossa marca.
+  if [ -f "$PONTE/.ponte-gerada" ]; then
+    echo "aviso: substituindo copia antiga gerada por esta ponte"
+    rm -rf "$PONTE"
+  else
+    echo "PAREI: $PONTE ja existe e NAO foi criada por este script."
+    echo "       Pode ter skills suas dentro. Nao vou apagar nada."
+    echo "       Mova ou renomeie a pasta e rode de novo."
+    exit 1
+  fi
 fi
 
 if ln -s "../$ORIGEM" "$PONTE" 2>/dev/null; then
@@ -43,5 +54,6 @@ else
   echo "       ATENCAO: copia NAO se atualiza sozinha. Rode este script"
   echo "       de novo sempre que mexer em $ORIGEM."
   cp -r "$ORIGEM" "$PONTE"
+  touch "$PONTE/.ponte-gerada"
   echo "ok: copia feita"
 fi

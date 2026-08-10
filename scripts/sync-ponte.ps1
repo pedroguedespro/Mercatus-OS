@@ -25,9 +25,16 @@ if ($null -ne $item) {
         Write-Host "ok: ponte ja existe ($ponte -> $($item.Target))"
         exit 0
     }
-    Write-Host "aviso: $ponte e uma pasta de verdade, nao um link."
-    Write-Host "       Provavelmente sobrou de um fallback de copia."
-    Remove-Item $ponte -Recurse -Force
+    # NUNCA apagar pasta que nao foi esta ponte que criou.
+    if (Test-Path (Join-Path $ponte ".ponte-gerada")) {
+        Write-Host "aviso: substituindo copia antiga gerada por esta ponte"
+        Remove-Item $ponte -Recurse -Force
+    } else {
+        Write-Host "PAREI: $ponte ja existe e NAO foi criada por este script."
+        Write-Host "       Pode ter skills suas dentro. Nao vou apagar nada."
+        Write-Host "       Mova ou renomeie a pasta e rode de novo."
+        exit 1
+    }
 }
 
 try {
@@ -38,5 +45,6 @@ try {
     Write-Host "       ATENCAO: copia NAO se atualiza sozinha. Rode este script"
     Write-Host "       de novo sempre que mexer em $origem."
     Copy-Item $origem $ponte -Recurse
+    New-Item -ItemType File (Join-Path $ponte ".ponte-gerada") -Force | Out-Null
     Write-Host "ok: copia feita"
 }

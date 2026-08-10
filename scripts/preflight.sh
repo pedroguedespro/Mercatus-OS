@@ -75,9 +75,9 @@ done
 [ "$COL" -eq 0 ] && ok "nenhuma colisao"
 
 echo
-echo "[5] Ja tem setup comecado aqui?"
+echo "[5] Ja rodou setup aqui antes?"
 if [ -f ".mercatus/setup-state.json" ]; then
-  aviso "existe setup em andamento — o /setup vai oferecer CONTINUAR, nao recomecar"
+  aviso "existe estado de setup anterior nesta pasta"
 else
   ok "instalacao nova"
 fi
