@@ -121,3 +121,8 @@ desktop.ini
 .cache/
 dist/
 build/
+
+# Ponte cross-IA: gerada por scripts/sync-ponte.*, nunca versionada.
+# Se a copia do fallback fosse commitada, viraria uma segunda fonte de
+# verdade divergindo de .claude/skills em silencio.
+.agents/
