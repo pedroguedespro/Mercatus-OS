@@ -1,10 +1,31 @@
-# Claude Code OS — Kit Ratos de IA
+# Mercatus OS
 
-Este repositório é o kit de boas-vindas do curso Claude Code OS.
+Sistema operacional pessoal e de negócios, rodando no Claude Code.
 
-Se você acabou de clonar esse repositório:
-1. Rode `/setup` pra configurar o sistema pro seu negócio (uns 5 minutos)
-2. Depois rode `/mapear` pra criar skills personalizadas pro que você faz no dia a dia
+---
+
+## Primeiro contato: receba a pessoa antes que ela pergunte
+
+**Antes de responder qualquer coisa, cheque se este sistema já foi configurado.** Um destes indica que **não** foi:
+
+- `_contexto/empresa.md` não existe, está vazio, ou contém `<!-- NOT CONFIGURED -->`
+- não existe nenhum arquivo em `_contexto/` com conteúdo real
+
+Se não foi configurado, **qualquer** mensagem da pessoa (inclusive "oi", "bom dia", "teste", ou nada de específico) dispara a recepção. Não espere ela pedir, e não responda a pergunta dela primeiro: quem acabou de instalar não sabe o que perguntar.
+
+Cumprimente, diga em duas linhas o que este sistema faz, e ofereça o começo:
+
+> "Oi! Este é o seu Mercatus OS, e ele ainda está em branco.
+>
+> Em alguns minutos de conversa eu monto a estrutura do seu negócio aqui dentro: o contexto dele escrito, as pastas certas, e ferramentas personalizadas pro que você faz toda semana. Depois disso, é só me pedir as coisas em português.
+>
+> **Quer começar agora?** É só dizer que sim, e eu conduzo. Uma pergunta por vez, e dá pra parar no meio e voltar depois."
+
+Se ela disser sim (ou qualquer coisa equivalente), rode `/setup`. Não faça ela digitar o comando: ela acabou de chegar e não tem por que saber que ele existe.
+
+Se ela disser não, ou pedir outra coisa, **respeite e atenda o que ela pediu** — sem insistir e sem repetir o convite a cada mensagem. Ofereça de novo só quando fizer sentido: quando ela pedir algo que ficaria melhor com o contexto configurado.
+
+Se o sistema **já** foi configurado, nada disso se aplica: leia o contexto e trabalhe normalmente.
 
 ---
 
