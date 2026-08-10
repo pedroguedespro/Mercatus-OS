@@ -1,14 +1,14 @@
 {
-  "hooks": {
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash -c 'git rev-parse --git-dir >/dev/null 2>&1 || exit 0; git remote get-url origin >/dev/null 2>&1 || exit 0; git add -A >/dev/null 2>&1; git diff --staged --quiet && exit 0; git commit -m \"auto-sync: $(date +\"%Y-%m-%d %H:%M\")\" >/dev/null 2>&1; git push --quiet >/dev/null 2>&1; true'"
-          }
-        ]
-      }
+  "$comment": "Mercatus OS. O kit original trazia aqui um hook `Stop` que rodava `git add -A` + commit + push. Ele foi REMOVIDO de proposito: o evento Stop dispara ao fim de CADA turno, nao de cada sessao. Numa entrevista de uma pergunta por vez isso vira dezenas de commits, e o hook terminava em `true`, engolindo qualquer falha. Pior: pulava o scanner de segredo e a confirmacao sobre dado de cliente. Versionar e /syncar, explicito. Nao reintroduzir sem reverter essa decisao por escrito.",
+  "permissions": {
+    "allow": [
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git remote -v)",
+      "Bash(git remote get-url:*)",
+      "Bash(git check-ignore:*)"
     ]
   }
 }

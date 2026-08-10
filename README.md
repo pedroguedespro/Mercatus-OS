@@ -1,82 +1,72 @@
-# Claude Code OS — Kit de Boas-Vindas 🐀
+# Mercatus OS
 
-Feito pelo [Ratos de IA](https://ratosdeia.com.br) pra alunos do curso **Claude Code OS**.
+Um segundo cérebro que se monta sozinho pro seu negócio.
 
----
-
-## Como instalar
-
-### Opção 1 — Via prompt (mais fácil)
-
-Com o Claude Code aberto em qualquer pasta, copie e cole esse prompt:
-
-```
-Instala pra mim o repositório https://github.com/dobralabs/ccos-ratos.git na pasta atual, abre ela e roda /setup
-```
-
-O Claude faz tudo: clona o repositório, entra na pasta e inicia a configuração.
+Você clona, roda um comando, responde uma entrevista. No fim você tem a estrutura de pastas do seu negócio, o contexto dele escrito, e ferramentas personalizadas pro que você faz toda semana.
 
 ---
 
-### Opção 2 — Via terminal
+## Instalar
 
-**1. Clone o repositório**
+> ⚠️ **Ainda em construção.** Este repositório está em desenvolvimento e não foi validado num piloto. Se você chegou aqui sem alguém ter te chamado, aguarde.
+
+**1. Clone**
+
 ```bash
-git clone https://github.com/dobralabs/ccos-ratos.git
-cd ccos-ratos
+git clone <url-deste-repositorio> meu-sistema
+cd meu-sistema
+git remote rename origin upstream
 ```
 
-**2. Abra no VS Code**
+O `git remote rename` importa: sem ele, o seu primeiro `git push` tentaria escrever no repositório do produto em vez do seu.
+
+**2. Ative a proteção contra commit de credencial**
+
 ```bash
-code .
+git config core.hooksPath .githooks
 ```
 
-**3. Abra o terminal integrado** (Ctrl + ` no Windows / Cmd + ` no Mac) e rode:
-```bash
-claude
-```
+**3. Abra o Claude Code dentro da pasta e rode**
 
-**4. Chame o setup**
 ```
 /setup
 ```
 
 ---
 
-O Claude vai te fazer algumas perguntas e configurar o sistema pro seu negócio. Em 5 minutos você tem tudo pronto.
+## Comandos
+
+| Comando | O que faz |
+|---|---|
+| `/setup` | Configura o sistema pro seu negócio. Comece por aqui |
+| `/mapear` | Entrevista sobre seus processos e cria ferramentas personalizadas |
+| `/iniciar` | Carrega o contexto no começo da sessão |
+| `/novo-projeto` | Cria um projeto novo com contexto próprio |
+| `/atualizar` | Reconcilia o contexto com o que mudou de verdade |
+| `/syncar` | Salva no GitHub, com scanner de credencial antes |
 
 ---
 
-## O que vem no kit
+## A única regra que quebra tudo
 
-**Skills prontas pra usar:**
-- `/setup` — configura o sistema pro seu negócio (comece por aqui)
-- `/iniciar` — carrega o contexto do negócio no começo de cada sessão de trabalho
-- `/syncar` — salva o trabalho no GitHub (commit + push, configura na primeira vez)
-- `/carrossel` — cria carrosséis pra Instagram e TikTok com a sua identidade visual
-- `/proposta-comercial` — gera proposta profissional em HTML a partir de um briefing
-- `/publicar-site` — publica qualquer HTML no ar com um link compartilhável
-- `/slide` — cria slide/card visual pra apresentação
-- `/analisar-dados` — analisa um arquivo e gera resumo executivo com insights
-- `/roteiro-post` — transforma ideia ou texto em roteiro de post ou vídeo
-- `/email-profissional` — rascunha email profissional a partir de contexto livre
-- `/atualizar` — varre o projeto e atualiza os arquivos de contexto que ficaram desatualizados
-- `/novo-projeto` — cria pasta de projeto novo com CLAUDE.md dedicado (entrevista sobre o projeto)
-
-**Pastas geradas pelo `/setup`:**
-- `_contexto/` — contexto do seu negócio e preferências
-- `marca/` — guia de identidade visual da sua marca
-- `templates/ferramentas/catalogo.md` — APIs, CLIs e MCPs disponíveis pra usar em skills
-
-**Pasta `dados/`:**
-- Drop zone pra arquivos que você quer analisar (CSV, XLSX, TXT, PDF)
-- Útil quando você não tem MCP de Google Drive instalado
-- Use com `/analisar-dados dados/seu-arquivo.csv`
+**Abra o Claude Code dentro da pasta.** Ele lê o contexto da pasta onde você abre. Se o Claude parecer não saber nada sobre o seu negócio, é quase sempre isso.
 
 ---
 
-## Ficou travado?
+## Nada sobe pra nuvem sozinho
 
-Assiste a **Aula 1.3** do curso (instalação do Claude Code).
+Salvar é `/syncar`, explícito. Ele roda um scanner de credencial sobre o que vai ser enviado e **aborta** se achar chave, token ou senha. Um hook de git faz a mesma checagem mesmo se você commitar pela mão.
 
-Dúvidas: [ratosdeia.com.br](https://ratosdeia.com.br)
+Isso é decisão, não limitação: commit automático a cada resposta gera dezenas de commits durante uma entrevista, esconde falhas, e pula a conferência do que está subindo.
+
+**`inbox/importacao/`** é onde você joga material cru da empresa — contrato, planilha, export de CRM. Essa pasta fica **fora do git** de propósito, porque é onde credencial e dado de cliente costumam estar. Sobe o destilado, não a fonte.
+
+---
+
+## Rodar os testes
+
+```bash
+bash .claude/scripts/testar-scanner.sh
+```
+
+Esperado: `19 passou, 0 falhou`.

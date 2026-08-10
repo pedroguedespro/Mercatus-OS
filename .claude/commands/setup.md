@@ -524,7 +524,7 @@ Após gerar todos os arquivos, envie uma mensagem de encerramento:
 >
 > 1. Se você tiver chaves de API (como a da Anthropic), guarde sempre num arquivo chamado `.env` — ele já está protegido e nunca vai ser enviado pro GitHub por engano.
 >
-> 2. Para não perder seu trabalho, conecte esse workspace ao GitHub rodando `/syncar`. Leva 2 minutos e depois o sistema salva automaticamente.
+> 2. Para não perder seu trabalho, conecte esse workspace ao GitHub rodando `/syncar`. Leva 2 minutos. **Não é automático, de propósito**: sempre que quiser salvar, chame `/syncar`. Ele roda um scanner de credencial antes e aborta o commit se achar algo que não devia subir.
 >
 > **Próximo passo:** rode `/mapear` pra eu entender seus processos do dia a dia e criar skills personalizadas pra você."
 
