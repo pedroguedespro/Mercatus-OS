@@ -56,27 +56,16 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color
 
 <div class="note warn"><strong>Não precisa saber programar.</strong> Você vai colar duas ou três frases e conversar. Se algum passo falhar, <strong>pare e chame quem te passou este link</strong>. Não tente adivinhar: cada tropeço aqui é problema nosso pra corrigir, não seu.</div>
 
-<h3>Parte 1: só se você ainda não tem o Claude Code</h3>
-<p class="trilha">Já usa o Claude Code ou o Codex? <strong>Pule direto pra Parte 2.</strong></p>
+<h3>Parte 1: só se você ainda não tem o Claude Code ou o Codex</h3>
+<p class="trilha">Já usa um dos dois? <strong>Pule direto pra Parte 2.</strong> Tudo daqui pra frente funciona igual nos dois.</p>
 
 <div class="step">
-  <div class="head"><div class="num">1</div><h2>Instalar o Git</h2></div>
-  <div class="body">
-    <p>O Git guarda todas as versões do seu trabalho. É ele que faz "desfazer" existir mesmo depois de semanas.</p>
-    <p>Baixe em <a href="https://git-scm.com/downloads">git-scm.com/downloads</a> e aceite tudo o que ele sugerir.</p>
-    <p><strong>Deu certo?</strong> Abra o terminal e digite <code>git --version</code>. Tem que aparecer um número.</p>
-    <div class="note">No Windows, ele instala junto o <strong>Git Credential Manager</strong> e o terminal <strong>Git Bash</strong>. Não desmarque nenhum dos dois.</div>
-    <label class="chk"><input type="checkbox"> Git instalado</label>
-  </div>
-</div>
-
-<div class="step">
-  <div class="head"><div class="num">2</div><h2>Instalar o Claude Code</h2></div>
+  <div class="head"><div class="num">1</div><h2>Instalar o Claude Code (ou o Codex)</h2></div>
   <div class="body">
     <p>É o programa que roda tudo. Em uma frase: é o Claude funcionando dentro do seu computador, com acesso às suas pastas.</p>
-    <p>Baixe em <a href="https://claude.com/code">claude.com/code</a> e entre com sua conta no fim da instalação.</p>
+    <p>Baixe em <a href="https://claude.com/code">claude.com/code</a> e entre com sua conta no fim da instalação. Se você prefere o Codex, ele também serve: <a href="https://openai.com/codex">openai.com/codex</a>.</p>
     <p><strong>Deu certo?</strong> <code>claude --version</code> mostra um número.</p>
-    <label class="chk"><input type="checkbox"> Claude Code instalado</label>
+    <label class="chk"><input type="checkbox"> Claude Code (ou Codex) instalado</label>
   </div>
 </div>
 
@@ -84,7 +73,7 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color
 <p class="trilha">Aqui todo mundo passa.</p>
 
 <div class="step">
-  <div class="head"><div class="num">3</div><h2>Criar a pasta e abrir o Claude Code nela</h2></div>
+  <div class="head"><div class="num">2</div><h2>Criar a pasta e abrir o Claude Code nela</h2></div>
   <div class="body">
     <p>Crie uma pasta nova onde você quiser, com o nome que quiser. Pode ser na Área de Trabalho.</p>
     <p>Abra o Claude Code <strong>dentro dela</strong>. Se estiver no terminal, entre na pasta e digite <code>claude</code>.</p>
@@ -93,24 +82,24 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color
 </div>
 
 <div class="step">
-  <div class="head"><div class="num">4</div><h2>Pedir pra instalar</h2></div>
+  <div class="head"><div class="num">3</div><h2>Pedir pra instalar</h2></div>
   <div class="body">
     <p>Cole isto e mande:</p>
-    <pre><code>Instala pra mim o repositório https://github.com/pedroguedespro/Mercatus-OS.git</code></pre>
-    <p>Ele baixa e <strong>pergunta se pode fazer a configuração inicial</strong>. Responda que sim.</p>
-    <div class="note">São três ajustes: dois garantem que o seu trabalho não vá parar no repositório do sistema, e um liga a checagem que impede senha e chave de API de subirem por acidente. Se ele não perguntar nada, cole isto:
-    <pre><code>Faz a configuração inicial que o README manda depois do clone</code></pre></div>
-    <label class="chk"><input type="checkbox"> Instalado e configurado</label>
+    <pre><code>Baixa e instala pra mim o Mercatus OS nesta pasta:
+https://github.com/pedroguedespro/Mercatus-OS/archive/refs/heads/main.zip</code></pre>
+    <p>Ele baixa, extrai e organiza tudo. Não precisa de mais nada.</p>
+    <div class="note">É um arquivo compactado, como qualquer outro download. <strong>Não precisa instalar mais nada</strong>, nem Git, nem ter conta em lugar nenhum.</div>
+    <label class="chk"><input type="checkbox"> Baixado e instalado</label>
   </div>
 </div>
 
 <div class="step">
-  <div class="head"><div class="num">5</div><h2>Conferir, se quiser garantir</h2></div>
+  <div class="head"><div class="num">4</div><h2>Conferir, se quiser garantir</h2></div>
   <div class="body">
     <p>Opcional, e leva dez segundos:</p>
     <pre><code>Roda o preflight e me diz o resultado</code></pre>
     <table>
-      <tr><td><strong>TUDO CERTO</strong></td><td>Siga pro passo 6.</td></tr>
+      <tr><td><strong>TUDO CERTO</strong></td><td>Siga pro passo 5.</td></tr>
       <tr><td><strong>[!] aviso</strong></td><td>Não impede nada. Pode seguir.</td></tr>
       <tr><td><strong>[X] problema</strong></td><td>Pare. Cada linha diz o que fazer.</td></tr>
     </table>
@@ -123,7 +112,7 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color
 <p class="trilha">A partir daqui é conversa, não comando.</p>
 
 <div class="step">
-  <div class="head"><div class="num">6</div><h2>Abrir na pasta certa e dizer oi</h2></div>
+  <div class="head"><div class="num">5</div><h2>Abrir na pasta certa e dizer oi</h2></div>
   <div class="body">
     <p>Feche o Claude Code e abra de novo, agora <strong>dentro da pasta que ele criou</strong>. Depois mande:</p>
     <pre><code>oi</code></pre>
@@ -134,13 +123,25 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color
 </div>
 
 <div class="step">
-  <div class="head"><div class="num">7</div><h2>Responder a entrevista</h2></div>
+  <div class="head"><div class="num">6</div><h2>Responder a entrevista</h2></div>
   <div class="body">
     <p>Uma pergunta por vez, no seu jeito de falar. Quanto mais você contar, melhor fica o resultado. Reserve uns 15 minutos: é conversa, não formulário.</p>
     <p>Se ele perguntar se você tem arquivos da empresa no computador, pode dizer o nome do arquivo ou da pasta, ou dizer que não tem. Os dois funcionam.</p>
     <p>No fim, você tem a estrutura montada e um manual do que fazer a partir dali.</p>
-    <div class="note warn"><strong>Nada é salvo na nuvem sozinho</strong>, de propósito. Quando quiser guardar o que fez, peça: <code>salva o que a gente fez</code>. Conectar isso ao GitHub vem depois, e não é necessário agora.</div>
+    <div class="note"><strong>Seu trabalho fica no seu computador.</strong> Nada sobe pra internet, e por enquanto é assim mesmo. Quando você quiser uma cópia de segurança na nuvem, a gente monta isso junto depois, com um passo a passo próprio. Não é necessário agora e não muda nada do que você já fez.</div>
     <label class="chk"><input type="checkbox"> Setup concluído</label>
+  </div>
+</div>
+
+<h3>Depois, quando fizer sentido</h3>
+<p class="trilha">Nada disso é necessário pra começar.</p>
+
+<div class="step">
+  <div class="body" style="padding-left:0">
+    <p><strong>Cópia de segurança na nuvem.</strong> Pra não perder nada se o computador der problema, e pra trabalhar da mesma coisa em mais de uma máquina. Envolve criar uma conta gratuita no GitHub e instalar o Git.</p>
+    <p><strong>Puxar o que a empresa já tem.</strong> Se o seu negócio já guarda coisas em algum lugar, dá pra trazer pra cá.</p>
+    <p><strong>Mais de um negócio.</strong> Se você toca mais de uma frente, cada uma fica separada, sem misturar contexto.</p>
+    <p>Quando chegar a hora de qualquer um desses, é só pedir: <code>quero guardar isso na nuvem</code>. Você recebe o passo a passo na hora.</p>
   </div>
 </div>
 

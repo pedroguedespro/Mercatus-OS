@@ -11,26 +11,31 @@ Você clona, roda um comando, responde uma entrevista. No fim você tem a estrut
 Abra o Claude Code (ou o Codex) na pasta onde você quer o sistema e cole:
 
 ```
-Instala pra mim o repositório https://github.com/pedroguedespro/Mercatus-OS.git
+Baixa e instala pra mim o Mercatus OS nesta pasta:
+https://github.com/pedroguedespro/Mercatus-OS/archive/refs/heads/main.zip
 ```
 
-Ele clona e **te pergunta se pode fazer a configuração inicial**. Diga que sim. Depois abra o Claude Code dentro da pasta que ele criou e mande um "oi".
+Depois é só mandar um "oi". Ele te recebe e conduz o resto.
 
-Não tem Claude Code nem Codex ainda? O passo a passo do zero está em https://mercatus-os-instalar.pages.dev
+**Não precisa de Git nem de conta no GitHub.** É um arquivo compactado, como qualquer download. Guardar o trabalho na nuvem é um passo separado, pra quando fizer sentido.
+
+Nunca usou Claude Code nem Codex? Comece por https://mercatus-os-instalar.pages.dev
 
 ---
 
-## Depois de clonar (a configuração que o assistente faz por você)
-
-Três comandos. Se ele não fizer sozinho, cole você mesmo:
+## Instalar com Git, se você já usa
 
 ```bash
+git clone https://github.com/pedroguedespro/Mercatus-OS.git meu-sistema
+cd meu-sistema
 git remote rename origin upstream
 git branch --unset-upstream
 git config core.hooksPath .githooks
 ```
 
-Os dois primeiros garantem que o seu trabalho não vá parar no repositório do sistema. O terceiro liga a checagem que impede senha e chave de API de subirem por acidente.
+As duas linhas do `remote` garantem que o seu trabalho não vá parar no repositório do sistema. A última liga a checagem que impede senha e chave de API de subirem por acidente.
+
+> Quem instala pelo zip não precisa de nada disso: sem Git não existe remote, então não existe pra onde mandar errado.
 
 ---
 
