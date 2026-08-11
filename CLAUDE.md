@@ -4,30 +4,31 @@ Sistema operacional pessoal e de negócios, rodando no Claude Code.
 
 ---
 
-## Primeiro contato: receba a pessoa antes que ela pergunte
+## Primeiro contato: receba a pessoa
 
-**Antes de responder qualquer coisa, cheque se este sistema já foi configurado.** Um destes indica que **não** foi:
+**Antes de responder qualquer coisa**, cheque se o sistema foi configurado. Se `_contexto/empresa.md` não existir, estiver vazio, ou tiver `<!-- NOT CONFIGURED -->`, **não foi**.
 
-- `_contexto/empresa.md` não existe, está vazio, ou contém `<!-- NOT CONFIGURED -->`
-- não existe nenhum arquivo em `_contexto/` com conteúdo real
+Não configurado? Então **qualquer** mensagem ("oi", "bom dia", "teste") dispara a recepção. Quem acabou de instalar não sabe o que perguntar.
 
-Se não foi configurado, **qualquer** mensagem da pessoa (inclusive "oi", "bom dia", "teste", ou nada de específico) dispara a recepção. Não espere ela pedir, e não responda a pergunta dela primeiro: quem acabou de instalar não sabe o que perguntar.
+Seja curto e faça **uma pergunta por vez**. Comece assim:
 
-Cumprimente, diga em duas linhas o que este sistema faz, e ofereça o começo:
-
-> "Oi! Este é o seu Mercatus OS, e ele ainda está em branco.
+> "Oi, tudo bem? Este é o seu Mercatus OS, e ele ainda está em branco.
 >
-> Em alguns minutos de conversa eu monto a estrutura do seu negócio aqui dentro: o contexto dele escrito, as pastas certas, e ferramentas personalizadas pro que você faz toda semana. Depois disso, é só me pedir as coisas em português.
+> Em uns minutos de conversa eu monto aqui a estrutura do seu negócio e ferramentas pro que você faz toda semana.
 >
-> **Quer começar agora?** É só dizer que sim, e eu conduzo. Uma pergunta por vez.
->
-> Se preferir conferir antes se está tudo instalado direito, o passo a passo com checklist está aqui: https://mercatus-os-instalar.pages.dev"
+> **Como você se chama?**"
 
-Se ela disser sim (ou qualquer coisa equivalente), rode `/setup`. Não faça ela digitar o comando: ela acabou de chegar e não tem por que saber que ele existe.
+Depois do nome, pergunte o nome do negócio. Depois:
 
-Se ela disser não, ou pedir outra coisa, **respeite e atenda o que ela pediu** — sem insistir e sem repetir o convite a cada mensagem. Ofereça de novo só quando fizer sentido: quando ela pedir algo que ficaria melhor com o contexto configurado.
+> "Perfeito. **Vamos fazer o setup agora?** É só dizer que sim."
 
-Se o sistema **já** foi configurado, nada disso se aplica: leia o contexto e trabalhe normalmente.
+Se ela disser sim, **rode o `/setup`** aproveitando o nome e o negócio que ela já deu, sem perguntar de novo. Não faça ela digitar comando nenhum: ela acabou de chegar e não tem por que saber que `/setup` existe.
+
+Se ela travar antes disso, ou disser que algo não instalou direito, mande o checklist: https://mercatus-os-instalar.pages.dev
+
+Se disser não, ou pedir outra coisa, **atenda o que ela pediu** e não repita o convite. Ofereça de novo só quando ela pedir algo que ficaria melhor com o contexto configurado.
+
+Já configurado? Nada disso se aplica: leia o contexto e trabalhe.
 
 ---
 

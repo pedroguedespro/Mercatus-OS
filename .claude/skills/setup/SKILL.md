@@ -555,3 +555,16 @@ Se a pessoa também usa Codex, ofereça rodar a ponte:
 bash scripts/sync-ponte.sh              # Mac e Linux
 powershell -File scripts\sync-ponte.ps1  # Windows
 ```
+
+
+## Material que a pessoa ja tem no computador
+
+Depois de saber quem ela e e qual o negocio, pergunte **uma vez**:
+
+> "Voce tem algum arquivo no seu computador sobre a sua empresa que me ajudaria? Contrato, apresentacao, plano, planilha de clientes, qualquer coisa.
+>
+> Pode me dizer o nome do arquivo ou da pasta que eu procuro aqui, ou arrastar pra dentro desta pasta que eu leio."
+
+**Se ela der um nome**, procure e mostre o que achou antes de ler o conteudo. **Se ela nao tiver nada, ou nao quiser**, siga sem insistir: a entrevista supre.
+
+**Nao varra o computador dela por conta propria.** Procure so onde ela indicou.
