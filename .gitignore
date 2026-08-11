@@ -126,3 +126,7 @@ build/
 # Se a copia do fallback fosse commitada, viraria uma segunda fonte de
 # verdade divergindo de .claude/skills em silencio.
 .agents/
+
+# Marcador da copia de manutencao (Pedro e socios). Gitignorado de proposito:
+# nunca chega em quem instala, so muda o comportamento do preflight aqui.
+.mercatus-mantenedor

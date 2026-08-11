@@ -93,9 +93,18 @@ else
   [ "$U" != "$P" ] && aviso "fetch e push apontam pra lugares DIFERENTES — confira antes de enviar qualquer coisa"
   case "$U" in
     *Mercatus-OS*|*mercatus-os*|*ccos-ratos*)
-      erro "origin aponta pro repositorio DO PRODUTO, nao pro seu"
-      echo "       Seu trabalho tentaria ir pro lugar errado. Corrija com:"
-      echo "         git remote rename origin upstream" ;;
+      # Esta pasta pode ser a COPIA DE MANUTENCAO (Pedro e os socios editam o
+      # produto aqui dentro) ou a instalacao de alguem que clonou direto. Nos
+      # dois casos o origin e o mesmo; o que muda e a intencao. O marcador
+      # .mercatus-mantenedor e gitignorado, entao nunca chega em quem instala.
+      if [ -f ".mercatus-mantenedor" ]; then
+        ok "origin e o repositorio do produto, e esta e a copia de manutencao"
+      else
+        erro "origin aponta pro repositorio DO PRODUTO, nao pro seu"
+        echo "       Seu trabalho tentaria ir pro lugar errado. Corrija com:"
+        echo "         git remote rename origin upstream"
+        echo "         git branch --unset-upstream"
+      fi ;;
     *) ok "origin nao e o repositorio do produto" ;;
   esac
 fi
