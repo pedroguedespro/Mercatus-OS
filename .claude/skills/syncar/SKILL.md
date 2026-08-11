@@ -27,12 +27,37 @@ Diga o que é verdade, sem alarmar:
 >
 > **Quer que eu monte isso agora?** Leva uns minutos, é gratuito, e depois basta pedir 'salva' que eu guardo tudo."
 
-Se ela quiser, conduza o Passo 3 inteiro (criar conta, instalar o Git, autenticar, criar o repositório) e só então ligue a proteção:
+### A ordem importa, e não é a intuitiva
+
+Se ela quiser, siga **exatamente nesta ordem**. Cada passo depende do anterior existir.
+
+**1. Git instalado** (ver Passo 3.2). Sem ele nada abaixo roda.
+
+**2. Iniciar o repositório e ancorar no sistema.**
 
 ```bash
-git init
+git init -b main
+git remote add upstream https://github.com/pedroguedespro/Mercatus-OS.git
+git fetch upstream
+git reset --soft upstream/main
+```
+
+> ⚠️ **O `reset --soft` é o passo que ninguém adivinha, e sem ele a atualização nunca vai funcionar.** Se ela instalou por download, o histórico dela nasce do zero e não tem nada em comum com o sistema. Um `git merge` depois falha com *"refusing to merge unrelated histories"*. **Verificado em teste em 11/08/2026.** O `reset --soft` põe o histórico do sistema como base **sem tocar em um único arquivo dela**, e o primeiro commit dela passa a ser um filho legítimo. Depois disso, atualizar funciona pra sempre.
+
+**3. Identidade do git**, se ainda não existir:
+```bash
+git config user.name "Nome dela"
+git config user.email "email dela"
+```
+
+**4. Ligar a proteção:**
+```bash
 git config core.hooksPath .githooks
 ```
+
+**5. Criar o repositório dela no GitHub** (ver Passo 3.4). **Privado.**
+
+**6. Scanner, commit e push** (Passo 2 e 3.5). Nesta ordem, nunca antes.
 
 Se ela não quiser, **respeite e não insista.** Ela continua trabalhando normal, e você oferece de novo só se ela mencionar medo de perder algo ou trocar de computador.
 

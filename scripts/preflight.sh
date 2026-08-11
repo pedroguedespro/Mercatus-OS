@@ -34,12 +34,18 @@ fi
 
 echo
 echo "[2] Os programas necessarios estao instalados?"
-for p in git bash; do
-  if command -v "$p" >/dev/null 2>&1; then ok "$p ($(command -v "$p"))"; else erro "$p nao encontrado"; fi
-done
-if command -v claude >/dev/null 2>&1; then ok "claude"; else
-  erro "claude nao encontrado — instale o Claude Code antes de continuar"
+# So o claude e obrigatorio. Git e bash sao necessarios apenas pra guardar o
+# trabalho na nuvem, que e passo posterior e opcional. Exigir os tres aqui
+# contradiria a instalacao por download, que e o caminho de menor barreira.
+if command -v claude >/dev/null 2>&1 || command -v codex >/dev/null 2>&1; then
+  ok "claude ou codex encontrado"
+else
+  erro "nem claude nem codex encontrados — instale um dos dois antes de continuar"
 fi
+for p in git bash; do
+  if command -v "$p" >/dev/null 2>&1; then ok "$p (disponivel)"
+  else aviso "$p nao encontrado — necessario so quando voce quiser guardar na nuvem"; fi
+done
 
 echo
 echo "[3] A protecao contra commit de credencial esta ligada?"
