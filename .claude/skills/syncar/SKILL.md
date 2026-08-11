@@ -11,6 +11,33 @@ description: >
 
 **Nada sobe sozinho neste sistema.** Isso é de propósito: um hook de auto-commit dispara ao fim de *cada resposta*, não de cada sessão — numa entrevista de trinta perguntas seriam trinta commits, e falhas ficariam invisíveis. Salvar é aqui, explícito.
 
+## Cenário ZERO — nem git existe aqui
+
+Cheque primeiro:
+
+```bash
+git rev-parse --git-dir 2>/dev/null
+```
+
+Se falhar, a pessoa instalou por download e **nunca configurou nuvem**. Isso é o caminho padrão, não é erro. **Não rode `git init` por conta própria** e não mostre erro técnico.
+
+Diga o que é verdade, sem alarmar:
+
+> "Seu trabalho está salvo aqui no seu computador, nas pastas normais. O que ainda não existe é uma cópia de segurança na nuvem: se este computador der problema, isso se perde.
+>
+> **Quer que eu monte isso agora?** Leva uns minutos, é gratuito, e depois basta pedir 'salva' que eu guardo tudo."
+
+Se ela quiser, conduza o Passo 3 inteiro (criar conta, instalar o Git, autenticar, criar o repositório) e só então ligue a proteção:
+
+```bash
+git init
+git config core.hooksPath .githooks
+```
+
+Se ela não quiser, **respeite e não insista.** Ela continua trabalhando normal, e você oferece de novo só se ela mencionar medo de perder algo ou trocar de computador.
+
+---
+
 ## Passo 1 — entender o estado
 
 ```bash

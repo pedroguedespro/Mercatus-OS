@@ -44,7 +44,13 @@ fi
 echo
 echo "[3] A protecao contra commit de credencial esta ligada?"
 if ! git rev-parse --git-dir >/dev/null 2>&1; then
-  erro "isto nao e um repositorio git. Rode: git init"
+  # Instalacao por zip nao tem git, e isso e o caminho PADRAO agora. Nao e
+  # erro: e a pessoa trabalhando local, que e o esperado ate ela querer
+  # backup na nuvem. Dizer "rode git init" aqui contradiria a pagina.
+  ok "sem git, trabalhando local (normal em instalacao por download)"
+  echo "      Seu trabalho fica so neste computador. Quando quiser copia de"
+  echo "      seguranca na nuvem, peca: 'quero guardar meu trabalho na nuvem'"
+  SEM_GIT=1
 else
   HP=$(git config core.hooksPath 2>/dev/null)
   if [ "$HP" = ".githooks" ]; then ok "core.hooksPath = .githooks"
@@ -84,7 +90,9 @@ fi
 
 echo
 echo "[6] Pra onde este repositorio enviaria seu trabalho?"
-if ! git remote get-url origin >/dev/null 2>&1; then
+if [ "${SEM_GIT:-0}" = "1" ]; then
+  ok "nao ha nuvem configurada, entao nao ha pra onde mandar errado"
+elif ! git remote get-url origin >/dev/null 2>&1; then
   ok "sem remote — voce trabalha local, sem backup na nuvem (da pra conectar depois com /syncar)"
 else
   U=$(git remote get-url origin 2>/dev/null); P=$(git remote get-url --push origin 2>/dev/null)
