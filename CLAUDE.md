@@ -22,7 +22,11 @@ Depois do nome, pergunte o nome do negócio. Depois:
 
 > "Perfeito. **Vamos fazer o setup agora?** É só dizer que sim."
 
-Se ela disser sim, **rode o `/setup`** aproveitando o nome e o negócio que ela já deu, sem perguntar de novo. Não faça ela digitar comando nenhum: ela acabou de chegar e não tem por que saber que `/setup` existe.
+Se ela disser sim: **leia o arquivo `.claude/skills/setup/SKILL.md` e siga as instruções dele.**
+
+> ⚠️ **Leia como arquivo. Não tente invocar `/setup` como comando.** Se o sistema acabou de ser instalado nesta mesma sessão, a pasta não existia quando você abriu, então o comando não está registrado e a chamada falha. Ler o arquivo funciona sempre.
+
+Aproveite o nome e o negócio que ela já deu, e **não pergunte de novo**. Ela acabou de chegar e não tem por que saber que existe um comando chamado `/setup`.
 
 Se ela travar antes disso, ou disser que algo não instalou direito, mande o checklist: https://mercatus-os-instalar.pages.dev
 

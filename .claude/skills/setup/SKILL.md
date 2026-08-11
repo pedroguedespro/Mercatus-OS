@@ -1,12 +1,33 @@
 ---
 name: setup
 description: >
-  Configura o Claude Code OS pro seu negócio. Faz perguntas sobre quem você é,
-  o que faz e como trabalha, e gera CLAUDE.md, memória, estrutura de pastas e
-  lista de MCPs personalizados pro seu perfil.
-  Use quando o usuário chamar /setup, quando _contexto/empresa.md estiver vazio
-  ou ausente, ou quando disser "configurar o sistema", "primeira vez", "setup".
+  Configura o Mercatus OS pro negócio da pessoa. Entrevista sobre quem ela é, o
+  que faz e como trabalha, e gera CLAUDE.md, AGENTS.md, contexto e estrutura de
+  pastas. Use quando ela chamar /setup, quando `_contexto/empresa.md` estiver
+  vazio, ou quando disser "configurar", "primeira vez", "vamos começar".
 ---
+
+## Antes de tudo: o que a recepção já coletou
+
+Se a recepção do `CLAUDE.md` já perguntou **o nome dela e o nome do negócio**, isso conta como a primeira pergunta **já respondida**.
+
+**Não pergunte de novo.** Repetir pergunta que a pessoa acabou de responder é o sinal mais rápido de que o sistema não estava prestando atenção. Confirme de passagem e siga:
+
+> "Beleza, Marina. Então vamos montar o Verano Estúdio aqui."
+
+## Material que ela já tem no computador
+
+Pergunte **uma vez**:
+
+> "Você tem algum arquivo no computador sobre a empresa que me ajudaria? Contrato, apresentação, plano, planilha de clientes, qualquer coisa.
+>
+> Pode me dizer o nome do arquivo ou da pasta que eu procuro, ou arrastar pra dentro desta pasta que eu leio."
+
+**Procure só onde ela indicar.** Nunca varra o computador por conta própria, e nunca leia `~/.claude/projects/` inteiro: ali mora histórico de todos os projetos daquela máquina, inclusive de outros clientes dela. Se for útil oferecer, **liste os candidatos e leia apenas o que ela escolher e confirmar.**
+
+Se ela não tiver nada, ou não quiser, siga sem insistir. A entrevista supre.
+
+
 
 # /setup — Configuração do Sistema
 
@@ -545,7 +566,9 @@ Depois de gerar o `CLAUDE.md` e os arquivos de `_contexto/`, gerar mais dois:
 
 **1. `AGENTS.md` na raiz.** Use `templates/perfis/agents-md-<perfil>.md` conforme o perfil detectado. Ele é o que faz o Codex, o Gemini e outros motores lerem o mesmo contexto sem manter cópia separada.
 
-**Ele aponta, não duplica.** Não copie o contexto do negócio pra dentro dele: duas cópias divergem na primeira edição e ninguém sabe qual vale.
+**Ele é autossuficiente de propósito.** Preencha o contexto do negócio dentro dele, a partir de `_contexto/`. Motivo: Codex e Gemini leem `AGENTS.md` direto, e um ponteiro só funciona se o motor for atrás do arquivo apontado, o que a pessoa não tem como saber se aconteceu.
+
+Deixe no topo o aviso de que ele é **gerado** e que edição manual se perde na próxima atualização. Quem quiser mudar algo mexe em `_contexto/` e roda `/atualizar`.
 
 **2. `_contexto/agora.md`.** Deixe o esqueleto com as quatro seções e o aviso `<!-- NOT CONFIGURED -->`. Ele começa vazio de propósito: quem preenche é o uso, não o setup.
 
