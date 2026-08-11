@@ -35,6 +35,7 @@ input[type=checkbox]{width:1.1rem;height:1.1rem;accent-color:var(--ac);cursor:po
 table{width:100%;border-collapse:collapse;margin:.7rem 0;font-size:.88rem}
 td{padding:.45rem .6rem;border-bottom:1px solid var(--ln);vertical-align:top}
 td:first-child{white-space:nowrap;color:var(--mut)}
+a{color:var(--ac)}
 footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color:var(--mut);font-size:.85rem}
 </style>
 </head>
@@ -55,7 +56,7 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color
   <div class="head"><div class="num">1</div><h2>Instalar o Claude Code</h2></div>
   <div class="body">
     <p>É o programa que roda tudo. Se você nunca ouviu falar: é o Claude funcionando dentro do seu computador, com acesso às suas pastas.</p>
-    <p>Baixe em <code>claude.com/code</code> e siga a instalação. No fim, ele vai pedir pra você entrar com sua conta.</p>
+    <p>Baixe em <a href="https://claude.com/code">claude.com/code</a> e siga a instalação. No fim, ele vai pedir pra você entrar com sua conta.</p>
     <p><strong>Como saber que deu certo:</strong> abra o terminal e digite <code>claude --version</code>. Tem que aparecer um número de versão.</p>
     <div class="note">No Windows, o terminal que funciona é o <strong>Git Bash</strong>, que vem junto com o Git do passo 2. Se você ainda não instalou o Git, faça o passo 2 primeiro e volte aqui.</div>
     <label class="chk"><input type="checkbox"> Claude Code instalado e respondendo</label>
@@ -66,7 +67,7 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color
   <div class="head"><div class="num">2</div><h2>Instalar o Git</h2></div>
   <div class="body">
     <p>O Git guarda todas as versões do seu trabalho. É ele que faz "desfazer" existir mesmo depois de semanas.</p>
-    <p>Baixe em <code>git-scm.com/downloads</code>. Pode aceitar tudo o que ele sugerir na instalação.</p>
+    <p>Baixe em <a href="https://git-scm.com/downloads">git-scm.com/downloads</a>. Pode aceitar tudo o que ele sugerir na instalação.</p>
     <p><strong>Como saber que deu certo:</strong> <code>git --version</code> mostra um número.</p>
     <div class="note">No Windows, ele instala junto o <strong>Git Credential Manager</strong>. É o que faz o login no GitHub abrir no navegador em vez de te pedir pra criar token na mão. Não desmarque essa opção.</div>
     <label class="chk"><input type="checkbox"> Git instalado e respondendo</label>
@@ -77,11 +78,11 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color
   <div class="head"><div class="num">3</div><h2>Baixar o sistema</h2></div>
   <div class="body">
     <p>Escolha <strong>um</strong> dos dois caminhos.</p>
-    <p><strong>Caminho A, com backup na nuvem (recomendado).</strong> Precisa de conta no GitHub, que é grátis. No repositório do Mercatus OS, clique em <strong>"Use this template"</strong> e depois <strong>"Create a new repository"</strong>. Isso cria uma cópia <em>sua</em>. Depois:</p>
+    <p><strong>Caminho A, com backup na nuvem (recomendado).</strong> Precisa de conta no GitHub, que é grátis. Abra <a href="https://github.com/pedroguedespro/Mercatus-OS">github.com/pedroguedespro/Mercatus-OS</a> e clique em <strong>"Use this template"</strong> e depois <strong>"Create a new repository"</strong>. Isso cria uma cópia <em>sua</em>. Depois:</p>
     <pre><code>git clone https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
 cd SEU-REPOSITORIO</code></pre>
     <p><strong>Caminho B, sem conta no GitHub.</strong> Funciona igual, só que sem backup na nuvem:</p>
-    <pre><code>git clone URL-DO-MERCATUS-OS meu-sistema
+    <pre><code>git clone https://github.com/pedroguedespro/Mercatus-OS.git meu-sistema
 cd meu-sistema
 git remote rename origin upstream</code></pre>
     <div class="note warn"><strong>Aquela última linha do caminho B não é opcional.</strong> Sem ela, quando você for salvar seu trabalho o computador tentaria mandar pro repositório do sistema em vez do seu. Dá pra conectar um repositório seu depois, quando quiser.</div>
