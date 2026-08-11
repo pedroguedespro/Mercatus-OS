@@ -11,13 +11,15 @@ Você clona, roda um comando, responde uma entrevista. No fim você tem a estrut
 Abra o Claude Code (ou o Codex) na pasta onde você quer o sistema e cole:
 
 ```
-Baixa e instala pra mim o Mercatus OS nesta pasta:
-https://github.com/pedroguedespro/Mercatus-OS/archive/refs/heads/main.zip
+Instala pra mim o Mercatus OS nesta pasta:
+https://github.com/pedroguedespro/Mercatus-OS
 ```
 
 Depois é só mandar um "oi". Ele te recebe e conduz o resto.
 
-**Não precisa de Git nem de conta no GitHub.** É um arquivo compactado, como qualquer download. Guardar o trabalho na nuvem é um passo separado, pra quando fizer sentido.
+**Não precisa de Git nem de conta no GitHub.** Ele baixa do jeito que funcionar na sua máquina. Guardar o trabalho na nuvem é um passo separado, pra quando fizer sentido.
+
+Depois de instalar, o manual de uso está em https://mercatus-os-instalar.pages.dev/manual/
 
 Nunca usou Claude Code nem Codex? Comece por https://mercatus-os-instalar.pages.dev
 

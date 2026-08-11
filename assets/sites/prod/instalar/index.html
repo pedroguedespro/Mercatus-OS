@@ -73,11 +73,11 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color
 <p class="trilha">Aqui todo mundo passa.</p>
 
 <div class="step">
-  <div class="head"><div class="num">2</div><h2>Criar a pasta e abrir o Claude Code nela</h2></div>
+  <div class="head"><div class="num">2</div><h2>Criar a pasta e abrir nela</h2></div>
   <div class="body">
-    <p>Crie uma pasta nova onde você quiser, com o nome que quiser. Pode ser na Área de Trabalho.</p>
-    <p>Abra o Claude Code <strong>dentro dela</strong>. Se estiver no terminal, entre na pasta e digite <code>claude</code>.</p>
-    <label class="chk"><input type="checkbox"> Claude Code aberto na pasta nova</label>
+    <p>Crie uma pasta <strong>nova e vazia</strong> onde você quiser, com o nome que quiser. Pode ser na Área de Trabalho.</p>
+    <p>Abra o Claude Code (ou o Codex) <strong>dentro dela</strong>. Se estiver no terminal, entre na pasta e digite <code>claude</code> ou <code>codex</code>.</p>
+    <label class="chk"><input type="checkbox"> Aberto na pasta nova</label>
   </div>
 </div>
 
@@ -85,26 +85,11 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color
   <div class="head"><div class="num">3</div><h2>Pedir pra instalar</h2></div>
   <div class="body">
     <p>Cole isto e mande:</p>
-    <pre><code>Baixa e instala pra mim o Mercatus OS nesta pasta:
-https://github.com/pedroguedespro/Mercatus-OS/archive/refs/heads/main.zip</code></pre>
-    <p>Ele baixa, extrai e organiza tudo. Não precisa de mais nada.</p>
-    <div class="note">É um arquivo compactado, como qualquer outro download. <strong>Não precisa instalar mais nada</strong>, nem Git, nem ter conta em lugar nenhum.</div>
+    <pre><code>Instala pra mim o Mercatus OS nesta pasta:
+https://github.com/pedroguedespro/Mercatus-OS</code></pre>
+    <p>Ele baixa e organiza tudo sozinho, do jeito que funcionar no seu computador. Não precisa de mais nada.</p>
+    <div class="note"><strong>Não precisa instalar mais nada</strong>, nem ter conta em lugar nenhum. E se algo der errado, pergunte pra ele mesmo: <code>deu esse erro aqui, como resolvo?</code> Ele te ajuda passo a passo.</div>
     <label class="chk"><input type="checkbox"> Baixado e instalado</label>
-  </div>
-</div>
-
-<div class="step">
-  <div class="head"><div class="num">4</div><h2>Conferir, se quiser garantir</h2></div>
-  <div class="body">
-    <p>Opcional, e leva dez segundos:</p>
-    <pre><code>Roda o preflight e me diz o resultado</code></pre>
-    <table>
-      <tr><td><strong>TUDO CERTO</strong></td><td>Siga pro passo 5.</td></tr>
-      <tr><td><strong>[!] aviso</strong></td><td>Não impede nada. Pode seguir.</td></tr>
-      <tr><td><strong>[X] problema</strong></td><td>Pare. Cada linha diz o que fazer.</td></tr>
-    </table>
-    <div class="note warn">Se aparecer <strong>"COLISÃO"</strong>, você já tem um sistema parecido instalado, e o comando dele venceria o nosso sem avisar. Não resolva sozinho: <strong>manda print pra quem te passou este link</strong>.</div>
-    <label class="chk"><input type="checkbox"> Conferido</label>
   </div>
 </div>
 
@@ -112,18 +97,18 @@ https://github.com/pedroguedespro/Mercatus-OS/archive/refs/heads/main.zip</code>
 <p class="trilha">A partir daqui é conversa, não comando.</p>
 
 <div class="step">
-  <div class="head"><div class="num">5</div><h2>Abrir na pasta certa e dizer oi</h2></div>
+  <div class="head"><div class="num">4</div><h2>Dizer oi</h2></div>
   <div class="body">
-    <p>Feche o Claude Code e abra de novo, agora <strong>dentro da pasta que ele criou</strong>. Depois mande:</p>
+    <p>Feche e abra de novo o Claude Code (ou o Codex), <strong>dentro da pasta onde você instalou</strong>. Depois mande:</p>
     <pre><code>oi</code></pre>
-    <p>Ele te recebe, pergunta seu nome e o do seu negócio, e oferece montar tudo. É só ir respondendo.</p>
+    <p>Ele te recebe, pergunta seu nome e o do seu negócio, e pergunta se pode montar tudo. Responda que sim e vá conversando.</p>
     <div class="note">Este é o passo que mais gente erra. O Claude lê o contexto da pasta onde você abre: no lugar certo ele já sabe o que é este sistema, em qualquer outro ele não sabe nada e parece quebrado. Se em algum momento ele parecer perdido, é quase sempre isso.</div>
     <label class="chk"><input type="checkbox"> Ele me recebeu e perguntou meu nome</label>
   </div>
 </div>
 
 <div class="step">
-  <div class="head"><div class="num">6</div><h2>Responder a entrevista</h2></div>
+  <div class="head"><div class="num">5</div><h2>Responder a entrevista</h2></div>
   <div class="body">
     <p>Uma pergunta por vez, no seu jeito de falar. Quanto mais você contar, melhor fica o resultado. Reserve uns 15 minutos: é conversa, não formulário.</p>
     <p>Se ele perguntar se você tem arquivos da empresa no computador, pode dizer o nome do arquivo ou da pasta, ou dizer que não tem. Os dois funcionam.</p>
@@ -132,6 +117,8 @@ https://github.com/pedroguedespro/Mercatus-OS/archive/refs/heads/main.zip</code>
     <label class="chk"><input type="checkbox"> Setup concluído</label>
   </div>
 </div>
+
+<div class="note" style="border-color:var(--ac)"><strong>Terminou o setup?</strong> O manual de uso está aqui: <a href="/manual/">como usar o Mercatus OS no dia a dia</a>. Ele explica o que pedir, com exemplos, sem jargão.</div>
 
 <h3>Depois, quando fizer sentido</h3>
 <p class="trilha">Nada disso é necessário pra começar.</p>

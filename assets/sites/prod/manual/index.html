@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Como usar o Mercatus OS</title>
+<style>
+:root{--bg:#faf9f7;--fg:#1a1a1a;--mut:#6b6b6b;--ln:#e2e0dc;--ac:#4b3286;--card:#fff;--code:#f4f2ef;--warn:#a35400}
+@media(prefers-color-scheme:dark){:root{--bg:#141414;--fg:#ececec;--mut:#9a9a9a;--ln:#2c2c2c;--ac:#a58ce0;--card:#1c1c1c;--code:#232323;--warn:#fbbf24}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:2rem 1rem 5rem}
+.wrap{max-width:760px;margin:0 auto}
+h1{font-size:1.9rem;line-height:1.2;margin:0 0 .4rem;letter-spacing:-.02em}
+.sub{color:var(--mut);margin:0 0 2.5rem;font-size:1.05rem}
+h2{font-size:1.35rem;margin:2.5rem 0 .8rem;letter-spacing:-.01em}
+h3{font-size:1.05rem;margin:1.6rem 0 .3rem}
+p{margin:.7rem 0}
+a{color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:1.1rem 1.3rem;margin:.9rem 0}
+code{background:var(--code);padding:.15em .4em;border-radius:4px;font-size:.9em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-word}
+pre{background:var(--code);border:1px solid var(--ln);border-radius:8px;padding:.9rem 3.5rem .9rem 1rem;overflow-x:auto;margin:.7rem 0;position:relative}
+pre code{background:none;padding:0;font-size:.85rem;line-height:1.6}
+.cp{position:absolute;top:.5rem;right:.5rem;background:var(--card);border:1px solid var(--ln);color:var(--mut);border-radius:6px;padding:.2rem .55rem;font-size:.75rem;cursor:pointer}
+.cp:hover{color:var(--fg)}
+.note{background:var(--code);border:1px solid var(--ln);border-radius:8px;padding:.7rem .9rem;margin:.9rem 0;font-size:.93rem;color:var(--mut)}
+.warn{border-color:var(--warn)}
+.warn strong{color:var(--warn)}
+table{width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.92rem}
+th{text-align:left;padding:.5rem .6rem;border-bottom:2px solid var(--ln);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+td{padding:.55rem .6rem;border-bottom:1px solid var(--ln);vertical-align:top}
+td:first-child{white-space:nowrap}
+footer{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--ln);color:var(--mut);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Como usar o Mercatus OS</h1>
+<p class="sub">Você terminou o setup. A partir daqui é conversa, e este manual mostra o que dá pra pedir.</p>
+
+<div class="note warn"><strong>A regra que resolve 90% dos problemas:</strong> abra o Claude Code (ou o Codex) <strong>sempre dentro da pasta do seu sistema</strong>. Ele lê o contexto do seu negócio da pasta onde você abre. Se em algum momento ele parecer que esqueceu quem você é, é quase sempre isso. Feche e abra de novo, no lugar certo.</div>
+
+<h2>Você não precisa decorar comando</h2>
+
+<p>Peça em português, do jeito que você falaria com alguém da sua equipe. Estes são exemplos reais, não uma sintaxe que você tenha que seguir:</p>
+
+<div class="card">
+<pre><code>monta uma proposta pro cliente novo que me procurou ontem</code></pre>
+<pre><code>escreve um email respondendo essa reclamação, tom firme mas educado</code></pre>
+<pre><code>analisa essa planilha de vendas e me diz o que está caindo</code></pre>
+<pre><code>transforma essa ideia num roteiro de post</code></pre>
+</div>
+
+<p>Ele já sabe quem você é, o que seu negócio faz e como você escreve, porque você contou tudo isso no setup. Não precisa repetir o contexto toda vez.</p>
+
+<h2>Os atalhos que existem</h2>
+
+<p>Comandos que começam com barra são atalhos pra coisas que você faz sempre. Digitar o nome em português também funciona.</p>
+
+<table>
+<tr><th>Atalho</th><th>Pra que serve</th></tr>
+<tr><td><code>/iniciar</code></td><td>Começar o dia. Ele lembra onde você parou e o que ficou pendente</td></tr>
+<tr><td><code>/atualizar</code></td><td>Quando algo mudou no negócio e o sistema ainda não sabe</td></tr>
+<tr><td><code>/mapear</code></td><td>Transformar algo que você repete toda semana numa ferramenta sua</td></tr>
+<tr><td><code>/novo-projeto</code></td><td>Cliente novo, produto novo, qualquer coisa que mereça pasta própria</td></tr>
+<tr><td><code>/syncar</code></td><td>Guardar o trabalho na nuvem, se você já configurou isso</td></tr>
+<tr><td><code>/setup</code></td><td>Refazer ou completar a configuração inicial</td></tr>
+</table>
+
+<h2>O mais útil, e o que quase ninguém usa no começo</h2>
+
+<h3>Ensinar ele a fazer do seu jeito</h3>
+<p>Quando ele entregar algo fora do que você queria, corrija. E se for uma correção que vale sempre, ele vai perguntar se pode salvar. Diga que sim.</p>
+<pre><code>não, nunca escreve "prezado". Aqui a gente trata por você</code></pre>
+<p>Da próxima vez ele já sabe. É isso que separa uma ferramenta genérica de uma que trabalha do seu jeito.</p>
+
+<h3>Transformar o que você repete em ferramenta</h3>
+<p>Se você faz a mesma coisa toda semana, ela pode virar um atalho seu:</p>
+<pre><code>/mapear</code></pre>
+<p>Ele entrevista você sobre o processo e cria a ferramenta. Depois é só pedir pelo nome.</p>
+
+<h3>Trazer o que você já tem</h3>
+<p>Contrato antigo, apresentação, planilha de cliente, briefing. Diga o nome do arquivo ou da pasta, ou arraste pra dentro da pasta do sistema:</p>
+<pre><code>lê o arquivo proposta-antiga.pdf e usa como base pra essa nova</code></pre>
+
+<h2>Onde as coisas ficam</h2>
+
+<table>
+<tr><th>Pasta</th><th>O que vai nela</th></tr>
+<tr><td><code>_contexto/</code></td><td>O que ele sabe sobre você e o negócio. <strong>Não apague</strong></td></tr>
+<tr><td><code>conteudo/</code></td><td>O que você produz: proposta, post, roteiro</td></tr>
+<tr><td><code>dados/</code></td><td>Arquivo pra analisar: planilha, PDF, CSV</td></tr>
+<tr><td><code>inbox/importacao/</code></td><td>Material cru da empresa. Fica fora de qualquer backup, de propósito</td></tr>
+<tr><td><code>marca/</code></td><td>Sua identidade visual, logo, cores</td></tr>
+</table>
+
+<div class="note"><strong>Por que <code>inbox/importacao/</code> é diferente:</strong> é onde entra contrato, planilha de cliente e export de sistema, que costumam trazer dado sensível junto. Nada dali sobe pra nuvem. O que sobe é o que foi destilado pra fora dessa pasta.</div>
+
+<h2>Ferramentas que você pode adicionar</h2>
+
+<p>Além do que já veio instalado, existe uma biblioteca de ferramentas prontas: anúncios, análise de site, criação de imagem, corte de vídeo, carrossel, e outras.</p>
+
+<p>Pergunte o que faria sentido pra você:</p>
+<pre><code>que ferramentas existem que fariam sentido pro meu negócio?</code></pre>
+
+<h2>Seu trabalho está seguro?</h2>
+
+<p>Enquanto você não configurou a nuvem, <strong>tudo vive só no seu computador</strong>. Se ele der problema, você perde.</p>
+
+<p>Quando quiser resolver isso, peça:</p>
+<pre><code>quero guardar meu trabalho na nuvem, me ensina o passo a passo</code></pre>
+
+<p>Ele te conduz: criar a conta gratuita, instalar o que falta, e conectar. Depois disso, <code>/syncar</code> guarda tudo, e uma checagem automática impede que senha ou chave de API subam por acidente.</p>
+
+<div class="note warn"><strong>Nada sobe sozinho, e isso é decisão, não limitação.</strong> Você escolhe o que guarda e quando. Assim nada vai pra internet sem você saber.</div>
+
+<h2>Travou?</h2>
+
+<p>Pergunte pra ele mesmo. É o caminho mais rápido, e funciona pra quase tudo:</p>
+<pre><code>deu esse erro aqui, como resolvo?</code></pre>
+<pre><code>não entendi o que você fez, me explica de outro jeito</code></pre>
+<pre><code>refaz isso, mas mais curto</code></pre>
+
+<footer>
+  Algo neste manual não bateu com o que você viu na tela? Avisa quem te passou este link. O que confundiu você vai confundir a próxima pessoa também.
+</footer>
+
+</div>
+<script>
+[].slice.call(document.querySelectorAll('pre')).forEach(function(pre){
+  var b=document.createElement('button');b.className='cp';b.textContent='copiar';
+  b.addEventListener('click',function(){
+    navigator.clipboard.writeText(pre.querySelector('code').textContent).then(function(){
+      b.textContent='copiado';setTimeout(function(){b.textContent='copiar'},1400);
+    });
+  });
+  pre.appendChild(b);
+});
+</script>
+</body>
+</html>
