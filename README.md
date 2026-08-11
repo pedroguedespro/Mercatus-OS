@@ -8,45 +8,29 @@ Você clona, roda um comando, responde uma entrevista. No fim você tem a estrut
 
 ## Instalar
 
-**Se você já tem o Claude Code ou o Codex**, é uma linha. Abra ele numa pasta qualquer e cole:
+Abra o Claude Code (ou o Codex) na pasta onde você quer o sistema e cole:
 
 ```
-Instala pra mim o repositório https://github.com/pedroguedespro/Mercatus-OS.git numa pasta nova chamada meu-sistema, entra nela, roda `git remote rename origin upstream` e `git branch --unset-upstream`, liga a proteção com `git config core.hooksPath .githooks`, e me avisa quando terminar.
+Instala pra mim o repositório https://github.com/pedroguedespro/Mercatus-OS.git
 ```
 
-Depois é só abrir o Claude Code **dentro da pasta que ele criou** e mandar um "oi". Ele te recebe e conduz o resto.
+Ele clona e **te pergunta se pode fazer a configuração inicial**. Diga que sim. Depois abra o Claude Code dentro da pasta que ele criou e mande um "oi".
 
-**Se você ainda não tem nenhum dos dois:** https://mercatus-os-instalar.pages.dev tem o passo a passo com checklist, do zero.
-
-> ⚠️ Em desenvolvimento ativo, ainda não validado num piloto.
+Não tem Claude Code nem Codex ainda? O passo a passo do zero está em https://mercatus-os-instalar.pages.dev
 
 ---
 
-## Instalar na mão
+## Depois de clonar (a configuração que o assistente faz por você)
 
-
-**1. Clone**
+Três comandos. Se ele não fizer sozinho, cole você mesmo:
 
 ```bash
-git clone https://github.com/pedroguedespro/Mercatus-OS.git meu-sistema
-cd meu-sistema
 git remote rename origin upstream
 git branch --unset-upstream
-```
-
-O `git remote rename` importa: sem ele, o seu primeiro `git push` tentaria escrever no repositório do produto em vez do seu.
-
-**2. Ative a proteção contra commit de credencial**
-
-```bash
 git config core.hooksPath .githooks
 ```
 
-**3. Abra o Claude Code dentro da pasta e rode**
-
-```
-/setup
-```
+Os dois primeiros garantem que o seu trabalho não vá parar no repositório do sistema. O terceiro liga a checagem que impede senha e chave de API de subirem por acidente.
 
 ---
 

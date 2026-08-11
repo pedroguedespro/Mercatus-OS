@@ -6,23 +6,28 @@
 <meta name="robots" content="noindex,nofollow">
 <title>Instalar o Mercatus OS</title>
 <style>
-:root{--bg:#faf9f7;--fg:#1a1a1a;--mut:#6b6b6b;--ln:#e2e0dc;--ac:#4b3286;--card:#fff;--code:#f4f2ef;--ok:#1d7a4c;--warn:#a35400}
-@media(prefers-color-scheme:dark){:root{--bg:#141414;--fg:#ececec;--mut:#9a9a9a;--ln:#2c2c2c;--ac:#a58ce0;--card:#1c1c1c;--code:#232323;--ok:#4ade80;--warn:#fbbf24}}
+:root{--bg:#faf9f7;--fg:#1a1a1a;--mut:#6b6b6b;--ln:#e2e0dc;--ac:#4b3286;--card:#fff;--code:#f4f2ef;--warn:#a35400}
+@media(prefers-color-scheme:dark){:root{--bg:#141414;--fg:#ececec;--mut:#9a9a9a;--ln:#2c2c2c;--ac:#a58ce0;--card:#1c1c1c;--code:#232323;--warn:#fbbf24}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:2rem 1rem 5rem}
-.wrap{max-width:720px;margin:0 auto}
+.wrap{max-width:760px;margin:0 auto}
 h1{font-size:1.9rem;line-height:1.2;margin:0 0 .4rem;letter-spacing:-.02em}
 .sub{color:var(--mut);margin:0 0 2rem;font-size:1.05rem}
 h2{font-size:1.15rem;margin:0;letter-spacing:-.01em}
+h3{font-size:1.35rem;margin:2.5rem 0 .3rem;letter-spacing:-.01em}
+.trilha{color:var(--mut);font-size:.9rem;margin:0 0 1rem}
 .step{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:1.25rem 1.4rem;margin-bottom:1rem}
-.step.done{opacity:.55}
+.step.done{opacity:.5}
 .head{display:flex;gap:.85rem;align-items:flex-start}
 .num{flex:0 0 1.75rem;height:1.75rem;border-radius:50%;background:var(--ac);color:#fff;display:grid;place-items:center;font-size:.85rem;font-weight:600}
 .body{padding-left:2.6rem}
 p{margin:.7rem 0}
+a{color:var(--ac)}
 code{background:var(--code);padding:.15em .4em;border-radius:4px;font-size:.9em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-word}
-pre{background:var(--code);border:1px solid var(--ln);border-radius:8px;padding:.9rem 1rem;overflow-x:auto;margin:.7rem 0}
+pre{background:var(--code);border:1px solid var(--ln);border-radius:8px;padding:.9rem 3.5rem .9rem 1rem;overflow-x:auto;margin:.7rem 0;position:relative}
 pre code{background:none;padding:0;font-size:.85rem;line-height:1.6}
+.cp{position:absolute;top:.5rem;right:.5rem;background:var(--card);border:1px solid var(--ln);color:var(--mut);border-radius:6px;padding:.2rem .55rem;font-size:.75rem;cursor:pointer}
+.cp:hover{color:var(--fg)}
 label.chk{display:flex;gap:.6rem;align-items:center;margin-top:1rem;cursor:pointer;font-size:.9rem;color:var(--mut);user-select:none}
 input[type=checkbox]{width:1.1rem;height:1.1rem;accent-color:var(--ac);cursor:pointer;flex:0 0 auto}
 .note{background:var(--code);border:1px solid var(--ln);border-radius:8px;padding:.7rem .9rem;margin:.9rem 0;font-size:.93rem;color:var(--mut)}
@@ -35,7 +40,6 @@ input[type=checkbox]{width:1.1rem;height:1.1rem;accent-color:var(--ac);cursor:po
 table{width:100%;border-collapse:collapse;margin:.7rem 0;font-size:.88rem}
 td{padding:.45rem .6rem;border-bottom:1px solid var(--ln);vertical-align:top}
 td:first-child{white-space:nowrap;color:var(--mut)}
-a{color:var(--ac)}
 footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color:var(--mut);font-size:.85rem}
 </style>
 </head>
@@ -44,135 +48,133 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color
 
 <div class="bar">
   <div class="track"><div class="fill" id="fill"></div></div>
-  <div class="count" id="count">0 de 7</div>
+  <div class="count" id="count">0 marcados</div>
 </div>
 
 <h1>Instalar o Mercatus OS</h1>
 <p class="sub">Vá marcando conforme avança. O progresso fica salvo neste navegador, então dá pra parar e voltar depois.</p>
 
-<div class="note warn"><strong>Antes de começar:</strong> não precisa saber programar. Mas você vai digitar comandos numa janela preta chamada terminal. Se algum passo falhar, <strong>pare e chame quem te passou este link</strong>. Não tente adivinhar. Cada tropeço aqui é problema nosso pra corrigir, não seu.</div>
+<div class="note warn"><strong>Não precisa saber programar.</strong> Você vai colar duas ou três frases e conversar. Se algum passo falhar, <strong>pare e chame quem te passou este link</strong>. Não tente adivinhar: cada tropeço aqui é problema nosso pra corrigir, não seu.</div>
 
-<div class="step" data-s="1">
-  <div class="head"><div class="num">1</div><h2>Instalar o Claude Code</h2></div>
-  <div class="body">
-    <p>É o programa que roda tudo. Se você nunca ouviu falar: é o Claude funcionando dentro do seu computador, com acesso às suas pastas.</p>
-    <p>Baixe em <a href="https://claude.com/code">claude.com/code</a> e siga a instalação. No fim, ele vai pedir pra você entrar com sua conta.</p>
-    <p><strong>Como saber que deu certo:</strong> abra o terminal e digite <code>claude --version</code>. Tem que aparecer um número de versão.</p>
-    <div class="note">No Windows, o terminal que funciona é o <strong>Git Bash</strong>, que vem junto com o Git do passo 2. Se você ainda não instalou o Git, faça o passo 2 primeiro e volte aqui.</div>
-    <label class="chk"><input type="checkbox"> Claude Code instalado e respondendo</label>
-  </div>
-</div>
+<h3>Parte 1: só se você ainda não tem o Claude Code</h3>
+<p class="trilha">Já usa o Claude Code ou o Codex? <strong>Pule direto pra Parte 2.</strong></p>
 
-<div class="step" data-s="2">
-  <div class="head"><div class="num">2</div><h2>Instalar o Git</h2></div>
+<div class="step">
+  <div class="head"><div class="num">1</div><h2>Instalar o Git</h2></div>
   <div class="body">
     <p>O Git guarda todas as versões do seu trabalho. É ele que faz "desfazer" existir mesmo depois de semanas.</p>
-    <p>Baixe em <a href="https://git-scm.com/downloads">git-scm.com/downloads</a>. Pode aceitar tudo o que ele sugerir na instalação.</p>
-    <p><strong>Como saber que deu certo:</strong> <code>git --version</code> mostra um número.</p>
-    <div class="note">No Windows, ele instala junto o <strong>Git Credential Manager</strong>. É o que faz o login no GitHub abrir no navegador em vez de te pedir pra criar token na mão. Não desmarque essa opção.</div>
-    <label class="chk"><input type="checkbox"> Git instalado e respondendo</label>
+    <p>Baixe em <a href="https://git-scm.com/downloads">git-scm.com/downloads</a> e aceite tudo o que ele sugerir.</p>
+    <p><strong>Deu certo?</strong> Abra o terminal e digite <code>git --version</code>. Tem que aparecer um número.</p>
+    <div class="note">No Windows, ele instala junto o <strong>Git Credential Manager</strong> e o terminal <strong>Git Bash</strong>. Não desmarque nenhum dos dois.</div>
+    <label class="chk"><input type="checkbox"> Git instalado</label>
   </div>
 </div>
 
-<div class="step" data-s="3">
-  <div class="head"><div class="num">3</div><h2>Baixar o sistema</h2></div>
+<div class="step">
+  <div class="head"><div class="num">2</div><h2>Instalar o Claude Code</h2></div>
   <div class="body">
-    <p>Escolha <strong>um</strong> dos dois caminhos.</p>
-    <p><strong>Caminho A, com backup na nuvem (recomendado).</strong> Precisa de conta no GitHub, que é grátis. Abra <a href="https://github.com/pedroguedespro/Mercatus-OS">github.com/pedroguedespro/Mercatus-OS</a> e clique em <strong>"Use this template"</strong>, depois <strong>"Create a new repository"</strong>. Na tela que abrir, <strong>marque Private</strong>. Isso cria uma cópia <em>sua</em>, e o contexto do seu negócio não fica visível pra ninguém. Depois:</p>
-    <pre><code>git clone https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
-cd SEU-REPOSITORIO</code></pre>
-    <p><strong>Caminho B, sem conta no GitHub.</strong> Funciona igual, só que sem backup na nuvem:</p>
-    <pre><code>git clone https://github.com/pedroguedespro/Mercatus-OS.git meu-sistema
-cd meu-sistema
-git remote rename origin upstream
-git branch --unset-upstream</code></pre>
-    <div class="note warn"><strong>Aquelas duas últimas linhas do caminho B não são opcionais.</strong> Sem elas, quando você for salvar, o computador mandaria seu trabalho pro repositório do sistema em vez do seu, sem avisar. Dá pra conectar um repositório seu depois, quando quiser.</div>
-    <label class="chk"><input type="checkbox"> Pasta baixada e estou dentro dela</label>
+    <p>É o programa que roda tudo. Em uma frase: é o Claude funcionando dentro do seu computador, com acesso às suas pastas.</p>
+    <p>Baixe em <a href="https://claude.com/code">claude.com/code</a> e entre com sua conta no fim da instalação.</p>
+    <p><strong>Deu certo?</strong> <code>claude --version</code> mostra um número.</p>
+    <label class="chk"><input type="checkbox"> Claude Code instalado</label>
   </div>
 </div>
 
-<div class="step" data-s="4">
-  <div class="head"><div class="num">4</div><h2>Ligar a proteção contra vazamento</h2></div>
+<h3>Parte 2: instalar o sistema</h3>
+<p class="trilha">Aqui todo mundo passa.</p>
+
+<div class="step">
+  <div class="head"><div class="num">3</div><h2>Criar a pasta e abrir o Claude Code nela</h2></div>
   <div class="body">
-    <p>Uma linha só, e ela evita o acidente mais caro que existe aqui: mandar uma senha ou chave de API pro GitHub sem perceber.</p>
-    <pre><code>git config core.hooksPath .githooks</code></pre>
-    <p>A partir disso, todo salvamento passa por uma checagem automática, e ela <strong>cancela</strong> se achar credencial no meio.</p>
-    <div class="note">Credencial enviada pro GitHub não se apaga: ela fica no histórico mesmo depois de você deletar o arquivo. Por isso o certo é evitar, não corrigir depois.</div>
-    <label class="chk"><input type="checkbox"> Proteção ligada</label>
+    <p>Crie uma pasta nova onde você quiser, com o nome que quiser. Pode ser na Área de Trabalho.</p>
+    <p>Abra o Claude Code <strong>dentro dela</strong>. Se estiver no terminal, entre na pasta e digite <code>claude</code>.</p>
+    <label class="chk"><input type="checkbox"> Claude Code aberto na pasta nova</label>
   </div>
 </div>
 
-<div class="step" data-s="5">
-  <div class="head"><div class="num">5</div><h2>Conferir se está tudo pronto</h2></div>
+<div class="step">
+  <div class="head"><div class="num">4</div><h2>Pedir pra instalar</h2></div>
   <div class="body">
-    <p>Ainda no terminal, dentro da pasta:</p>
-    <pre><code>bash scripts/preflight.sh</code></pre>
-    <p>Ele checa tudo dos passos anteriores e mais algumas coisas que só dão problema depois. Leia o resultado:</p>
+    <p>Cole isto e mande:</p>
+    <pre><code>Instala pra mim o repositório https://github.com/pedroguedespro/Mercatus-OS.git</code></pre>
+    <p>Ele baixa e <strong>pergunta se pode fazer a configuração inicial</strong>. Responda que sim.</p>
+    <div class="note">São três ajustes: dois garantem que o seu trabalho não vá parar no repositório do sistema, e um liga a checagem que impede senha e chave de API de subirem por acidente. Se ele não perguntar nada, cole isto:
+    <pre><code>Faz a configuração inicial que o README manda depois do clone</code></pre></div>
+    <label class="chk"><input type="checkbox"> Instalado e configurado</label>
+  </div>
+</div>
+
+<div class="step">
+  <div class="head"><div class="num">5</div><h2>Conferir, se quiser garantir</h2></div>
+  <div class="body">
+    <p>Opcional, e leva dez segundos:</p>
+    <pre><code>Roda o preflight e me diz o resultado</code></pre>
     <table>
       <tr><td><strong>TUDO CERTO</strong></td><td>Siga pro passo 6.</td></tr>
-      <tr><td><strong>[!] aviso</strong></td><td>Não impede nada. Vale ler, mas pode seguir.</td></tr>
-      <tr><td><strong>[X] problema</strong></td><td>Pare. Cada linha diz o que fazer. Resolva e rode de novo.</td></tr>
+      <tr><td><strong>[!] aviso</strong></td><td>Não impede nada. Pode seguir.</td></tr>
+      <tr><td><strong>[X] problema</strong></td><td>Pare. Cada linha diz o que fazer.</td></tr>
     </table>
-    <div class="note warn"><strong>Se aparecer "COLISÃO":</strong> significa que você já tem um sistema parecido instalado no seu computador, e o comando dele venceria o nosso. Nada funcionaria como esperado, e sem mensagem de erro. Não tente resolver sozinho, <strong>manda print pra quem te passou este link</strong>.</div>
-    <label class="chk"><input type="checkbox"> Preflight passou</label>
+    <div class="note warn">Se aparecer <strong>"COLISÃO"</strong>, você já tem um sistema parecido instalado, e o comando dele venceria o nosso sem avisar. Não resolva sozinho: <strong>manda print pra quem te passou este link</strong>.</div>
+    <label class="chk"><input type="checkbox"> Conferido</label>
   </div>
 </div>
 
-<div class="step" data-s="6">
-  <div class="head"><div class="num">6</div><h2>Abrir o Claude Code dentro da pasta</h2></div>
+<h3>Parte 3: usar</h3>
+<p class="trilha">A partir daqui é conversa, não comando.</p>
+
+<div class="step">
+  <div class="head"><div class="num">6</div><h2>Abrir na pasta certa e dizer oi</h2></div>
   <div class="body">
-    <p>Este é o passo que mais gente erra, e o erro é silencioso.</p>
-    <pre><code>claude</code></pre>
-    <p>Tem que ser <strong>de dentro da pasta que você baixou</strong>. O Claude lê o contexto da pasta onde você abre: aberto no lugar certo, ele já sabe o que é este sistema; aberto em qualquer outro lugar, ele não sabe nada e vai parecer quebrado.</p>
-    <div class="note">Se em algum momento o Claude parecer não saber nada sobre o seu negócio, é quase sempre isso. Feche e abra de novo, dentro da pasta.</div>
-    <label class="chk"><input type="checkbox"> Claude Code aberto na pasta certa</label>
+    <p>Feche o Claude Code e abra de novo, agora <strong>dentro da pasta que ele criou</strong>. Depois mande:</p>
+    <pre><code>oi</code></pre>
+    <p>Ele te recebe, pergunta seu nome e o do seu negócio, e oferece montar tudo. É só ir respondendo.</p>
+    <div class="note">Este é o passo que mais gente erra. O Claude lê o contexto da pasta onde você abre: no lugar certo ele já sabe o que é este sistema, em qualquer outro ele não sabe nada e parece quebrado. Se em algum momento ele parecer perdido, é quase sempre isso.</div>
+    <label class="chk"><input type="checkbox"> Ele me recebeu e perguntou meu nome</label>
   </div>
 </div>
 
-<div class="step" data-s="7">
-  <div class="head"><div class="num">7</div><h2>Rodar o setup</h2></div>
+<div class="step">
+  <div class="head"><div class="num">7</div><h2>Responder a entrevista</h2></div>
   <div class="body">
-    <p>Digite:</p>
-    <pre><code>/setup</code></pre>
-    <p>Ele vai te entrevistar sobre o seu negócio, uma pergunta por vez. Responda no seu jeito de falar, sem se preocupar com formato. Quanto mais você contar, melhor fica o resultado.</p>
+    <p>Uma pergunta por vez, no seu jeito de falar. Quanto mais você contar, melhor fica o resultado. Reserve uns 15 minutos: é conversa, não formulário.</p>
+    <p>Se ele perguntar se você tem arquivos da empresa no computador, pode dizer o nome do arquivo ou da pasta, ou dizer que não tem. Os dois funcionam.</p>
     <p>No fim, você tem a estrutura montada e um manual do que fazer a partir dali.</p>
-    <div class="note"><strong>Reserve uns 15 minutos.</strong> A entrevista é conversa, não formulário, e o resultado fica melhor quando você não está com pressa.</div>
-    <div class="note warn"><strong>Nada é salvo na nuvem sozinho</strong>, de propósito. Quando quiser guardar o que fez, digite <code>/syncar</code>.</div>
+    <div class="note warn"><strong>Nada é salvo na nuvem sozinho</strong>, de propósito. Quando quiser guardar o que fez, peça: <code>salva o que a gente fez</code>. Conectar isso ao GitHub vem depois, e não é necessário agora.</div>
     <label class="chk"><input type="checkbox"> Setup concluído</label>
   </div>
 </div>
 
 <footer>
-  Travou em algum passo? Isso é informação útil: o que te travou vai travar a próxima pessoa também. Manda print do terminal pra quem te passou este link, em vez de resolver sozinho e seguir.
+  Travou em algum passo? Isso é informação útil: o que te travou vai travar a próxima pessoa também. Manda print pra quem te passou este link, em vez de resolver sozinho e seguir.
 </footer>
 
 </div>
 <script>
 (function(){
-  var K='mercatus-os-instalar-v1',
+  var K='mercatus-os-instalar-v2',
       boxes=[].slice.call(document.querySelectorAll('input[type=checkbox]')),
-      fill=document.getElementById('fill'),
-      count=document.getElementById('count'),
-      saved={};
+      fill=document.getElementById('fill'),count=document.getElementById('count'),saved={};
   try{ saved=JSON.parse(localStorage.getItem(K))||{} }catch(e){}
   function paint(){
     var n=0;
-    boxes.forEach(function(b,i){
-      var step=b.closest('.step');
-      if(b.checked){n++;step.classList.add('done')}else{step.classList.remove('done')}
-    });
+    boxes.forEach(function(b){var s=b.closest('.step');if(b.checked){n++;s.classList.add('done')}else{s.classList.remove('done')}});
     fill.style.transform='scaleX('+(n/boxes.length)+')';
-    count.textContent=n+' de '+boxes.length;
+    count.textContent=n+' de '+boxes.length+' marcados';
   }
   boxes.forEach(function(b,i){
     b.checked=!!saved[i];
-    b.addEventListener('change',function(){
-      saved[i]=b.checked;
-      try{ localStorage.setItem(K,JSON.stringify(saved)) }catch(e){}
-      paint();
-    });
+    b.addEventListener('change',function(){saved[i]=b.checked;try{localStorage.setItem(K,JSON.stringify(saved))}catch(e){}paint()});
   });
   paint();
+  [].slice.call(document.querySelectorAll('pre')).forEach(function(pre){
+    var b=document.createElement('button');b.className='cp';b.textContent='copiar';
+    b.addEventListener('click',function(){
+      navigator.clipboard.writeText(pre.querySelector('code').textContent).then(function(){
+        b.textContent='copiado';setTimeout(function(){b.textContent='copiar'},1400);
+      });
+    });
+    pre.appendChild(b);
+  });
 })();
 </script>
 </body>
