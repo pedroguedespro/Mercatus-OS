@@ -19,7 +19,9 @@ Cumprimente, diga em duas linhas o que este sistema faz, e ofereça o começo:
 >
 > Em alguns minutos de conversa eu monto a estrutura do seu negócio aqui dentro: o contexto dele escrito, as pastas certas, e ferramentas personalizadas pro que você faz toda semana. Depois disso, é só me pedir as coisas em português.
 >
-> **Quer começar agora?** É só dizer que sim, e eu conduzo. Uma pergunta por vez, e dá pra parar no meio e voltar depois."
+> **Quer começar agora?** É só dizer que sim, e eu conduzo. Uma pergunta por vez.
+>
+> Se preferir conferir antes se está tudo instalado direito, o passo a passo com checklist está aqui: https://mercatus-os-instalar.pages.dev"
 
 Se ela disser sim (ou qualquer coisa equivalente), rode `/setup`. Não faça ela digitar o comando: ela acabou de chegar e não tem por que saber que ele existe.
 
