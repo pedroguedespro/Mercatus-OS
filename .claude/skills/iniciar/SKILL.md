@@ -51,3 +51,10 @@ Depois de configurado, o /iniciar vai funcionar completo.
 - Não liste os arquivos que foram lidos. Só mostre o que importa.
 - Se houver tarefas pendentes em `tarefas.md`, mencione até 3 itens no topo
 - Após o resumo, aguarde o usuário responder o que quer fazer
+
+
+## Contexto vivo da semana
+
+Além dos três arquivos de contexto, ler **`_contexto/agora.md`**. É o que muda toda semana: onde a pessoa parou, decisões recentes, o que está travado e o que está quente agora.
+
+Se ele tiver `<!-- NOT CONFIGURED -->` ou estiver vazio, ignore em silêncio. Se tiver conteúdo, **abra a sessão retomando de lá** em vez de perguntar "no que você quer trabalhar?" — a pessoa já respondeu isso quando fechou a última sessão.

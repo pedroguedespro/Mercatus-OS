@@ -105,3 +105,10 @@ Se o usuário quiser aprovar uma a uma, respeitar.
 - Não inventar informação. Se não consegue inferir do estado do projeto, perguntar
 - Tom direto. Não exagerar no diagnóstico de coisas triviais
 - Se o projeto acabou de ser configurado (setup recente, poucos commits), dizer que está tudo certo e não forçar atualizações desnecessárias
+
+
+## Atualizar o contexto vivo
+
+Ao fim da varredura, atualizar **`_contexto/agora.md`** com as quatro seções: onde paramos, decisões recentes (com data), pendências (deixando claro se esperam a pessoa ou terceiros) e o que está quente.
+
+**Podar é parte do trabalho.** O que passou de uns 30 dias sai: ou vira registro em outro lugar, ou some. Um `agora.md` que só cresce deixa de ser "agora" e vira arquivo morto que ninguém lê.

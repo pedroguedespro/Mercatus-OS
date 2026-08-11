@@ -537,3 +537,21 @@ Após gerar todos os arquivos, envie uma mensagem de encerramento:
 - Se o usuário der respostas vagas, faz uma pergunta de acompanhamento antes de continuar
 - Gera os arquivos todos de uma vez no final, não um a um durante as perguntas
 - Após gerar, mostra a mensagem final resumida — não lista cada linha de cada arquivo
+
+
+## Gerar o AGENTS.md e o agora.md
+
+Depois de gerar o `CLAUDE.md` e os arquivos de `_contexto/`, gerar mais dois:
+
+**1. `AGENTS.md` na raiz.** Use `templates/perfis/agents-md-<perfil>.md` conforme o perfil detectado. Ele é o que faz o Codex, o Gemini e outros motores lerem o mesmo contexto sem manter cópia separada.
+
+**Ele aponta, não duplica.** Não copie o contexto do negócio pra dentro dele: duas cópias divergem na primeira edição e ninguém sabe qual vale.
+
+**2. `_contexto/agora.md`.** Deixe o esqueleto com as quatro seções e o aviso `<!-- NOT CONFIGURED -->`. Ele começa vazio de propósito: quem preenche é o uso, não o setup.
+
+Se a pessoa também usa Codex, ofereça rodar a ponte:
+
+```bash
+bash scripts/sync-ponte.sh              # Mac e Linux
+powershell -File scripts\sync-ponte.ps1  # Windows
+```
