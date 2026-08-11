@@ -28,8 +28,17 @@ esac
 mkdir -p .agents
 
 if [ -L "$PONTE" ]; then
-  echo "ok: ponte ja existe ($PONTE -> $(readlink "$PONTE"))"
-  exit 0
+  # Nao basta existir link: ele pode apontar pra outro lugar, e ai o Codex
+  # leria skills que nao sao as nossas achando que esta tudo certo.
+  ALVO="$(cd "$(dirname "$PONTE")" && cd "$(readlink "$(basename "$PONTE")")" 2>/dev/null && pwd)"
+  ESPERADO="$(cd "$ORIGEM" && pwd)"
+  if [ "$ALVO" = "$ESPERADO" ]; then
+    echo "ok: ponte ja existe e aponta pro lugar certo"
+    exit 0
+  fi
+  echo "PAREI: $PONTE existe mas aponta pra $ALVO, nao pra $ESPERADO."
+  echo "       Nao vou mexer. Confira e remova o link manualmente."
+  exit 1
 fi
 
 if [ -d "$PONTE" ] && [ ! -L "$PONTE" ]; then

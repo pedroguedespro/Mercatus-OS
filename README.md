@@ -8,14 +8,19 @@ Você clona, roda um comando, responde uma entrevista. No fim você tem a estrut
 
 ## Instalar
 
-> ⚠️ **Ainda em construção.** Este repositório está em desenvolvimento e não foi validado num piloto. Se você chegou aqui sem alguém ter te chamado, aguarde.
+> **O caminho suportado é a página de instalação:** https://mercatus-os-instalar.pages.dev
+>
+> Ela tem o passo a passo com checklist, incluindo o que fazer se algo falhar. As instruções abaixo são um resumo pra quem já conhece o terreno.
+>
+> ⚠️ Em desenvolvimento ativo, ainda não validado num piloto.
 
 **1. Clone**
 
 ```bash
-git clone <url-deste-repositorio> meu-sistema
+git clone https://github.com/pedroguedespro/Mercatus-OS.git meu-sistema
 cd meu-sistema
 git remote rename origin upstream
+git branch --unset-upstream
 ```
 
 O `git remote rename` importa: sem ele, o seu primeiro `git push` tentaria escrever no repositório do produto em vez do seu.

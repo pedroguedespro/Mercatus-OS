@@ -23,9 +23,17 @@ Três cenários possíveis, e o **B** é o que mais engana.
 
 ---
 
-## Cenário A — sem remote nenhum
+## Cenário A — sem remote proprio
 
-`git remote -v` não retorna nada. A pessoa está trabalhando 100% local, sem backup.
+Nao existe `origin`. Pode existir um `upstream` (quem clonou direto e corrigiu ja tem), e isso **nao muda nada**: sem `origin`, a pessoa trabalha local.
+
+Antes de qualquer commit, confirme que a branch nao ficou rastreando o produto:
+
+```bash
+git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null
+```
+
+Se responder algo com `upstream/`, rode `git branch --unset-upstream` antes de seguir. **Nunca rode `git push` sem `origin`**: use sempre `git push -u origin <branch>` explicito, depois de confirmar que o `origin` e da pessoa. A pessoa está trabalhando 100% local, sem backup.
 
 Pergunte se ela quer conectar agora. Se **não** quiser, respeite: commit local continua funcionando e o trabalho fica versionado na máquina dela.
 
@@ -66,7 +74,10 @@ Corrija na hora:
 
 ```bash
 git remote rename origin upstream
+git branch --unset-upstream
 ```
+
+> **A segunda linha nao e opcional.** O `rename` tira o `origin`, mas o rastreamento da branch migra junto e vira `upstream/main`. Um `git push` depois disso resolve o destino em silencio e manda o trabalho da pessoa pro repositorio do produto. Verificado em teste: o `git push --dry-run` responde "Everything up-to-date" em vez de reclamar que nao ha destino.
 
 > "Ajustei uma coisa: o repositório estava apontando pro Mercatus OS original, não pro seu. Renomeei pra `upstream` — assim você continua podendo puxar atualizações do sistema, mas o seu trabalho não vai tentar ir pra lá."
 

@@ -22,8 +22,16 @@ if (-not (Test-Path ".agents")) { New-Item -ItemType Directory ".agents" | Out-N
 $item = Get-Item $ponte -ErrorAction SilentlyContinue
 if ($null -ne $item) {
     if ($item.LinkType -eq "Junction" -or $item.LinkType -eq "SymbolicLink") {
-        Write-Host "ok: ponte ja existe ($ponte -> $($item.Target))"
-        exit 0
+        # Link existente pode apontar pra outro lugar. Validar o destino.
+        $alvo = (Resolve-Path $item.Target -ErrorAction SilentlyContinue).Path
+        $esperado = (Resolve-Path $origem).Path
+        if ($alvo -eq $esperado) {
+            Write-Host "ok: ponte ja existe e aponta pro lugar certo"
+            exit 0
+        }
+        Write-Host "PAREI: $ponte aponta pra $alvo, nao pra $esperado."
+        Write-Host "       Nao vou mexer. Confira e remova o link manualmente."
+        exit 1
     }
     # NUNCA apagar pasta que nao foi esta ponte que criou.
     if (Test-Path (Join-Path $ponte ".ponte-gerada")) {

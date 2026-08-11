@@ -78,14 +78,15 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color
   <div class="head"><div class="num">3</div><h2>Baixar o sistema</h2></div>
   <div class="body">
     <p>Escolha <strong>um</strong> dos dois caminhos.</p>
-    <p><strong>Caminho A, com backup na nuvem (recomendado).</strong> Precisa de conta no GitHub, que é grátis. Abra <a href="https://github.com/pedroguedespro/Mercatus-OS">github.com/pedroguedespro/Mercatus-OS</a> e clique em <strong>"Use this template"</strong> e depois <strong>"Create a new repository"</strong>. Isso cria uma cópia <em>sua</em>. Depois:</p>
+    <p><strong>Caminho A, com backup na nuvem (recomendado).</strong> Precisa de conta no GitHub, que é grátis. Abra <a href="https://github.com/pedroguedespro/Mercatus-OS">github.com/pedroguedespro/Mercatus-OS</a> e clique em <strong>"Use this template"</strong>, depois <strong>"Create a new repository"</strong>. Na tela que abrir, <strong>marque Private</strong>. Isso cria uma cópia <em>sua</em>, e o contexto do seu negócio não fica visível pra ninguém. Depois:</p>
     <pre><code>git clone https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
 cd SEU-REPOSITORIO</code></pre>
     <p><strong>Caminho B, sem conta no GitHub.</strong> Funciona igual, só que sem backup na nuvem:</p>
     <pre><code>git clone https://github.com/pedroguedespro/Mercatus-OS.git meu-sistema
 cd meu-sistema
-git remote rename origin upstream</code></pre>
-    <div class="note warn"><strong>Aquela última linha do caminho B não é opcional.</strong> Sem ela, quando você for salvar seu trabalho o computador tentaria mandar pro repositório do sistema em vez do seu. Dá pra conectar um repositório seu depois, quando quiser.</div>
+git remote rename origin upstream
+git branch --unset-upstream</code></pre>
+    <div class="note warn"><strong>Aquelas duas últimas linhas do caminho B não são opcionais.</strong> Sem elas, quando você for salvar, o computador mandaria seu trabalho pro repositório do sistema em vez do seu, sem avisar. Dá pra conectar um repositório seu depois, quando quiser.</div>
     <label class="chk"><input type="checkbox"> Pasta baixada e estou dentro dela</label>
   </div>
 </div>
