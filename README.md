@@ -8,11 +8,22 @@ Você clona, roda um comando, responde uma entrevista. No fim você tem a estrut
 
 ## Instalar
 
-> **O caminho suportado é a página de instalação:** https://mercatus-os-instalar.pages.dev
->
-> Ela tem o passo a passo com checklist, incluindo o que fazer se algo falhar. As instruções abaixo são um resumo pra quem já conhece o terreno.
->
+**Se você já tem o Claude Code ou o Codex**, é uma linha. Abra ele numa pasta qualquer e cole:
+
+```
+Instala pra mim o repositório https://github.com/pedroguedespro/Mercatus-OS.git numa pasta nova chamada meu-sistema, entra nela, roda `git remote rename origin upstream` e `git branch --unset-upstream`, liga a proteção com `git config core.hooksPath .githooks`, e me avisa quando terminar.
+```
+
+Depois é só abrir o Claude Code **dentro da pasta que ele criou** e mandar um "oi". Ele te recebe e conduz o resto.
+
+**Se você ainda não tem nenhum dos dois:** https://mercatus-os-instalar.pages.dev tem o passo a passo com checklist, do zero.
+
 > ⚠️ Em desenvolvimento ativo, ainda não validado num piloto.
+
+---
+
+## Instalar na mão
+
 
 **1. Clone**
 
