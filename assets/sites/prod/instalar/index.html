@@ -73,43 +73,36 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color
 <p class="trilha">Aqui todo mundo passa.</p>
 
 <div class="step">
-  <div class="head"><div class="num">2</div><h2>Criar a pasta e abrir nela</h2></div>
+  <div class="head"><div class="num">2</div><h2>Criar a pasta e apontar o programa pra ela</h2></div>
   <div class="body">
     <p>Crie uma pasta <strong>nova e vazia</strong> onde você quiser, com o nome que quiser. Pode ser na Área de Trabalho.</p>
-    <p>Abra o Claude Code (ou o Codex) <strong>dentro dela</strong>. Se estiver no terminal, entre na pasta e digite <code>claude</code> ou <code>codex</code>.</p>
-    <label class="chk"><input type="checkbox"> Aberto na pasta nova</label>
+    <p>Agora abra o <strong>Claude Code</strong> (ou o Codex) e <strong>selecione essa pasta</strong> como a pasta de trabalho. É o mesmo gesto de abrir um projeto: você aponta o programa pra pasta.</p>
+    <div class="note"><strong>No Mac ou no Windows, pelo terminal:</strong> entre na pasta e digite <code>claude</code> (ou <code>codex</code>). No Mac, o caminho costuma ser <code>cd ~/Desktop/nome-da-pasta</code>. No Windows, <code>cd Desktop
+ome-da-pasta</code>.</div>
+    <label class="chk"><input type="checkbox"> Programa apontado pra pasta nova</label>
   </div>
 </div>
 
 <div class="step">
-  <div class="head"><div class="num">3</div><h2>Pedir pra instalar</h2></div>
+  <div class="head"><div class="num">3</div><h2>Pedir pra instalar e configurar</h2></div>
   <div class="body">
     <p>Cole isto e mande:</p>
-    <pre><code>Instala pra mim o Mercatus OS aqui nesta pasta, com os
-arquivos soltos direto aqui e nao dentro de outra subpasta:
+    <pre><code>Instala pra mim o Mercatus OS aqui nesta pasta, com os arquivos
+soltos direto aqui e não dentro de outra subpasta. Depois lê o
+CLAUDE.md e começa a configuração comigo.
+
 https://github.com/pedroguedespro/Mercatus-OS</code></pre>
-    <p>Ele baixa e organiza tudo sozinho, do jeito que funcionar no seu computador. Não precisa de mais nada.</p>
-    <div class="note"><strong>Não precisa instalar mais nada</strong>, nem ter conta em lugar nenhum. E se algo der errado, pergunte pra ele mesmo: <code>deu esse erro aqui, como resolvo?</code> Ele te ajuda passo a passo.</div>
-    <label class="chk"><input type="checkbox"> Baixado e instalado</label>
+    <p>Ele baixa, organiza tudo e <strong>já começa a te entrevistar</strong> sobre o seu negócio. É só ir respondendo, uma pergunta por vez.</p>
+    <div class="note"><strong>Não precisa instalar mais nada</strong>, nem ter conta em lugar nenhum. Se algo der errado, pergunte pra ele mesmo: <code>deu esse erro aqui, como resolvo?</code> Ele te ajuda passo a passo. Funciona igual no Mac e no Windows.</div>
+    <label class="chk"><input type="checkbox"> Instalado, e a entrevista começou</label>
   </div>
 </div>
 
 <h3>Parte 3: usar</h3>
-<p class="trilha">A partir daqui é conversa, não comando.</p>
+<p class="trilha">A partir daqui é conversa, não comando. Se em algum momento o programa parecer que não sabe nada do seu negócio, é porque ele foi aberto fora da pasta. Aponte ele de novo pra pasta certa.</p>
 
 <div class="step">
-  <div class="head"><div class="num">4</div><h2>Dizer oi</h2></div>
-  <div class="body">
-    <p>Feche e abra de novo o Claude Code (ou o Codex), <strong>na mesma pasta</strong>. Se ele tiver criado uma subpasta, abra dentro dela. Depois mande:</p>
-    <pre><code>oi</code></pre>
-    <p>Ele te recebe, pergunta seu nome e o do seu negócio, e pergunta se pode montar tudo. Responda que sim e vá conversando.</p>
-    <div class="note">Este é o passo que mais gente erra. O Claude lê o contexto da pasta onde você abre: no lugar certo ele já sabe o que é este sistema, em qualquer outro ele não sabe nada e parece quebrado. Se em algum momento ele parecer perdido, é quase sempre isso.</div>
-    <label class="chk"><input type="checkbox"> Ele me recebeu e perguntou meu nome</label>
-  </div>
-</div>
-
-<div class="step">
-  <div class="head"><div class="num">5</div><h2>Responder a entrevista</h2></div>
+  <div class="head"><div class="num">4</div><h2>Responder a entrevista</h2></div>
   <div class="body">
     <p>Uma pergunta por vez, no seu jeito de falar. Quanto mais você contar, melhor fica o resultado. Reserve uns 15 minutos: é conversa, não formulário.</p>
     <p>Se ele perguntar se você tem arquivos da empresa no computador, pode dizer o nome do arquivo ou da pasta, ou dizer que não tem. Os dois funcionam.</p>

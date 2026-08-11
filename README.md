@@ -8,36 +8,39 @@ Você clona, roda um comando, responde uma entrevista. No fim você tem a estrut
 
 ## Instalar
 
-Abra o Claude Code (ou o Codex) na pasta onde você quer o sistema e cole:
+Abra o Claude Code (ou o Codex), aponte pra pasta onde você quer o sistema, e cole:
 
 ```
-Instala pra mim o Mercatus OS nesta pasta:
+Instala pra mim o Mercatus OS aqui nesta pasta, com os arquivos soltos
+direto aqui e não dentro de outra subpasta. Depois lê o CLAUDE.md e
+começa a configuração comigo.
+
 https://github.com/pedroguedespro/Mercatus-OS
 ```
 
-Depois é só mandar um "oi". Ele te recebe e conduz o resto.
-
-**Não precisa de Git nem de conta no GitHub.** Ele baixa do jeito que funcionar na sua máquina. Guardar o trabalho na nuvem é um passo separado, pra quando fizer sentido.
-
-Depois de instalar, o manual de uso está em https://mercatus-os-instalar.pages.dev/manual/
+Ele instala e **já começa a entrevista**. Funciona igual no Mac e no Windows.
 
 Nunca usou Claude Code nem Codex? Comece por https://mercatus-os-instalar.pages.dev
+Depois de instalar, o manual está em https://mercatus-os-instalar.pages.dev/manual/
 
 ---
 
-## Instalar com Git, se você já usa
+## Como ele instala, e por que importa
+
+O assistente escolhe sozinho entre dois caminhos:
+
+**Com Git (preferido).** Ele clona e configura `upstream` apontando pra cá. Isso é o que permite você receber melhorias depois: quando sair coisa nova, você pergunta `tem novidade?` e ele traz só o que você escolher.
 
 ```bash
-git clone https://github.com/pedroguedespro/Mercatus-OS.git meu-sistema
-cd meu-sistema
+git clone https://github.com/pedroguedespro/Mercatus-OS.git .
 git remote rename origin upstream
 git branch --unset-upstream
 git config core.hooksPath .githooks
 ```
 
-As duas linhas do `remote` garantem que o seu trabalho não vá parar no repositório do sistema. A última liga a checagem que impede senha e chave de API de subirem por acidente.
+**Sem Git (plano B).** Baixa e extrai o conteúdo. Funciona, mas **atualizar depois é manual**. Quando você pedir `tem novidade?`, ele oferece ligar a atualização automática, e aí é rápido.
 
-> Quem instala pelo zip não precisa de nada disso: sem Git não existe remote, então não existe pra onde mandar errado.
+> Sem Git também não existe `remote`, então não há como o seu trabalho ir parar no repositório errado. É mais simples e mais seguro; só perde a atualização automática.
 
 ---
 
