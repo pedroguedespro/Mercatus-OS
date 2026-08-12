@@ -46,7 +46,11 @@ O detalhe longo mora em `_contexto/`, não aqui. O bloco é resumo e roteamento.
 
 Se a recepção do `CLAUDE.md` já perguntou **o nome dela e o nome do negócio**, isso conta como a primeira pergunta **já respondida**.
 
-**Não pergunte de novo.** Repetir pergunta que a pessoa acabou de responder é o sinal mais rápido de que o sistema não estava prestando atenção. Confirme de passagem e siga:
+**Não pergunte de novo.** Repetir pergunta que a pessoa acabou de responder é o sinal mais rápido de que o sistema não estava prestando atenção.
+
+Isso vale para **qualquer** pergunta mais à frente neste arquivo: antes de fazer uma, cheque se a resposta já veio na recepção ou num bloco que a pessoa colou. **Pergunte só o que ainda falta.** A Pergunta 1 (nome e negócio) costuma já estar respondida quando você chega aqui.
+
+Confirme de passagem e siga:
 
 > "Beleza, Marina. Então vamos montar o Verano Estúdio aqui."
 

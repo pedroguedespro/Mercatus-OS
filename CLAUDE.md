@@ -10,10 +10,13 @@ Sistema operacional pessoal e de negócios, rodando no Claude Code.
 
 ```bash
 git remote get-url origin 2>/dev/null
+git remote get-url --push origin 2>/dev/null
 git config core.hooksPath
 ```
 
-**Se o `origin` contém `Mercatus-OS` ou `ccos-ratos`**, a pessoa clonou o repositório do produto e ele ficou como destino do trabalho dela. Um `push` mandaria o contexto do negócio dela pro repositório do sistema, e a interface ainda oferece um botão de "Criar PR" que faria isso em um clique. **Corrija na hora, sem perguntar:**
+**Cheque os dois endereços.** Um remote pode ter destino de envio (`pushurl`) diferente do de busca, e aí o `push` vai pra um lugar que o `git remote -v` de relance não mostra. Se os dois divergirem, pare e pergunte antes de qualquer coisa.
+
+**Se qualquer um dos dois contém `Mercatus-OS` ou `ccos-ratos`**, a pessoa clonou o repositório do produto e ele ficou como destino do trabalho dela. Um `push` mandaria o contexto do negócio dela pro repositório do sistema, e a interface ainda oferece um botão de "Criar PR" que faria isso em um clique. **Corrija na hora, sem perguntar:**
 
 ```bash
 git remote rename origin upstream
@@ -64,7 +67,14 @@ Já configurado? Nada disso se aplica: leia o contexto e trabalhe.
 
 ---
 
-<!-- Este arquivo será atualizado pelo /setup com o contexto do seu negócio. -->
+<!-- MERCATUS-OS:INICIO v1 -->
+<!-- NOT CONFIGURED -->
+
+Este sistema ainda não foi configurado. É este bloco, e **somente** este bloco, que o `/setup` preenche com o contexto do negócio da pessoa.
+
+Tudo fora daqui é roteador do sistema: não reescrever, não reordenar, não remover.
+
+<!-- MERCATUS-OS:FIM v1 -->
 
 ## Contexto do negócio
 
