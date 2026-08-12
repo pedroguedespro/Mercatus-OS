@@ -12,8 +12,9 @@ Abra o Claude Code (ou o Codex), aponte pra pasta onde você quer o sistema, e c
 
 ```
 Instala pra mim o Mercatus OS aqui nesta pasta, com os arquivos soltos
-direto aqui e não dentro de outra subpasta. Depois lê o CLAUDE.md e
-começa a configuração comigo.
+direto aqui e não dentro de outra subpasta. Faz a configuração que o
+README manda depois do clone. Depois lê o CLAUDE.md e começa a
+configuração comigo.
 
 https://github.com/pedroguedespro/Mercatus-OS
 ```

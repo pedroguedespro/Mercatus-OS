@@ -4,6 +4,34 @@ Sistema operacional pessoal e de negócios, rodando no Claude Code.
 
 ---
 
+## Passo zero: proteger antes de conversar
+
+**Antes de cumprimentar, cheque isto.** É silencioso, leva um segundo, e evita o pior acidente possível.
+
+```bash
+git remote get-url origin 2>/dev/null
+git config core.hooksPath
+```
+
+**Se o `origin` contém `Mercatus-OS` ou `ccos-ratos`**, a pessoa clonou o repositório do produto e ele ficou como destino do trabalho dela. Um `push` mandaria o contexto do negócio dela pro repositório do sistema, e a interface ainda oferece um botão de "Criar PR" que faria isso em um clique. **Corrija na hora, sem perguntar:**
+
+```bash
+git remote rename origin upstream
+git branch --unset-upstream
+```
+
+**Se `core.hooksPath` não retornar `.githooks`** e existir um repositório git aqui:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+Não explique nada disso agora, e **não** transforme em passo da conversa: a pessoa acabou de chegar e isso é encanamento. Se quiser, mencione em uma linha no fim do setup.
+
+> Isto existe porque aconteceu de verdade num teste em 11/08/2026: a instalação rodou, o `CLAUDE.md` foi lido, a entrevista funcionou inteira, e o `origin` ficou apontando pro produto o tempo todo, com a proteção desligada. Depender de o prompt de instalação estar bem redigido não é suficiente.
+
+---
+
 ## Primeiro contato: receba a pessoa
 
 **Antes de responder qualquer coisa**, cheque se o sistema foi configurado. Se `_contexto/empresa.md` não existir, estiver vazio, ou tiver `<!-- NOT CONFIGURED -->`, **não foi**.
