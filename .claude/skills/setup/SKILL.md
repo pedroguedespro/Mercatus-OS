@@ -7,6 +7,41 @@ description: >
   vazio, ou quando disser "configurar", "primeira vez", "vamos começar".
 ---
 
+## ⚠️ O CLAUDE.md NÃO é reescrito. Nunca.
+
+Este é o erro mais fácil de cometer aqui, e ele só cobra o preço meses depois.
+
+O `CLAUDE.md` da raiz é o **roteador do sistema**. Ele contém coisas que não são da pessoa e não podem sumir: o passo zero que protege o repositório dela, o contrato de atualização, e as regras de comportamento.
+
+**Você escreve APENAS entre os dois marcadores:**
+
+```
+<!-- MERCATUS-OS:INICIO v1 -->
+   ... aqui vai o contexto do negócio dela ...
+<!-- MERCATUS-OS:FIM v1 -->
+```
+
+**Tudo fora do bloco fica exatamente como está.** Não reordene, não "melhore", não remova a seção de primeiro contato mesmo que ela já não vá disparar.
+
+### Por que isso importa, com o caso real
+
+Num teste em 11/08/2026 o setup rodou bem: entrevistou, criou as pastas, gerou tudo. E **reescreveu o `CLAUDE.md` inteiro**, apagando os marcadores.
+
+Consequência: quando sair melhoria do sistema, o `/atualizar-sistema` não consegue mais distinguir o que é dela do que é nosso naquele arquivo. O merge dá conflito no arquivo todo, e a regra "mantém a versão dela" descarta a melhoria em silêncio. **Ela nunca mais receberia correção nenhuma no roteador**, e ninguém perceberia.
+
+### Se os marcadores não existirem
+
+Alguém editou à mão, ou uma versão antiga gerou errado. **Não escreva.** Pare e diga:
+
+> "O arquivo de configuração perdeu as marcações que eu uso pra saber onde posso escrever. Se eu escrever assim, posso apagar algo seu. Quer que eu restaure a estrutura padrão e coloque suas informações de volta no lugar certo?"
+
+### O que vai no bloco
+
+Só o que é da pessoa e do negócio dela: quem é, o que faz, clientes, tom de voz, ferramentas, estrutura de pastas escolhida, e o ponteiro pros arquivos de `_contexto/`.
+
+O detalhe longo mora em `_contexto/`, não aqui. O bloco é resumo e roteamento.
+
+
 ## Antes de tudo: o que a recepção já coletou
 
 Se a recepção do `CLAUDE.md` já perguntou **o nome dela e o nome do negócio**, isso conta como a primeira pergunta **já respondida**.
