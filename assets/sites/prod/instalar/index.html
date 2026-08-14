@@ -12,14 +12,16 @@
 body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:2rem 1rem 5rem}
 .wrap{max-width:760px;margin:0 auto}
 h1{font-size:1.9rem;line-height:1.2;margin:0 0 .4rem;letter-spacing:-.02em}
-.sub{color:var(--mut);margin:0 0 2rem;font-size:1.05rem}
+.sub{color:var(--mut);margin:0 0 1.4rem;font-size:1.05rem}
 h2{font-size:1.15rem;margin:0;letter-spacing:-.01em}
 h3{font-size:1.35rem;margin:2.5rem 0 .3rem;letter-spacing:-.01em}
 .trilha{color:var(--mut);font-size:.9rem;margin:0 0 1rem}
+.oque{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:1rem 1.2rem;margin:0 0 1.2rem;font-size:.97rem}
 .step{background:var(--card);border:1px solid var(--ln);border-radius:12px;padding:1.25rem 1.4rem;margin-bottom:1rem}
 .step.done{opacity:.5}
 .head{display:flex;gap:.85rem;align-items:flex-start}
 .num{flex:0 0 1.75rem;height:1.75rem;border-radius:50%;background:var(--ac);color:#fff;display:grid;place-items:center;font-size:.85rem;font-weight:600}
+.min{margin-left:auto;font-size:.78rem;color:var(--mut);white-space:nowrap;padding-top:.25rem}
 .body{padding-left:2.6rem}
 p{margin:.7rem 0}
 a{color:var(--ac)}
@@ -28,18 +30,20 @@ pre{background:var(--code);border:1px solid var(--ln);border-radius:8px;padding:
 pre code{background:none;padding:0;font-size:.85rem;line-height:1.6}
 .cp{position:absolute;top:.5rem;right:.5rem;background:var(--card);border:1px solid var(--ln);color:var(--mut);border-radius:6px;padding:.2rem .55rem;font-size:.75rem;cursor:pointer}
 .cp:hover{color:var(--fg)}
+.ok{font-size:.93rem;color:var(--mut);border-top:1px solid var(--ln);padding-top:.7rem;margin-top:.9rem}
 label.chk{display:flex;gap:.6rem;align-items:center;margin-top:1rem;cursor:pointer;font-size:.9rem;color:var(--mut);user-select:none}
 input[type=checkbox]{width:1.1rem;height:1.1rem;accent-color:var(--ac);cursor:pointer;flex:0 0 auto}
 .note{background:var(--code);border:1px solid var(--ln);border-radius:8px;padding:.7rem .9rem;margin:.9rem 0;font-size:.93rem;color:var(--mut)}
 .warn{border-color:var(--warn)}
 .warn strong{color:var(--warn)}
+.destaque{border-color:var(--ac)}
+.foto{background:var(--code);border:1px dashed var(--ln);border-radius:8px;min-height:100px;display:grid;place-items:center;margin:.8rem 0;padding:1rem}
+.foto span{color:var(--mut);font-size:.82rem;text-align:center}
+.foto img{width:100%;height:auto;border-radius:6px;display:block}
 .bar{position:sticky;top:0;background:var(--bg);padding:.7rem 0 1rem;margin:-2rem 0 1.5rem;z-index:5;border-bottom:1px solid var(--ln)}
 .track{height:5px;background:var(--ln);border-radius:3px;overflow:hidden}
 .fill{height:100%;background:var(--ac);width:100%;transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
 .count{font-size:.8rem;color:var(--mut);margin-top:.4rem}
-table{width:100%;border-collapse:collapse;margin:.7rem 0;font-size:.88rem}
-td{padding:.45rem .6rem;border-bottom:1px solid var(--ln);vertical-align:top}
-td:first-child{white-space:nowrap;color:var(--mut)}
 footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color:var(--mut);font-size:.85rem}
 </style>
 </head>
@@ -52,77 +56,96 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color
 </div>
 
 <h1>Instalar o Mercatus OS</h1>
-<p class="sub">Vá marcando conforme avança. O progresso fica salvo neste navegador, então dá pra parar e voltar depois.</p>
+<p class="sub">Cinco passos. Uns 25 minutos, e 15 deles são só conversa.</p>
 
-<div class="note warn"><strong>Não precisa saber programar.</strong> Você vai colar duas ou três frases e conversar. Se algum passo falhar, <strong>pare e mande um print pra quem te passou este link</strong>. Só isso, não precisa tentar mais nada: cada tropeço aqui é problema nosso pra corrigir, não seu.</div>
+<div class="oque">
+  <strong>No fim disso você tem</strong> um assistente que já sabe o que é o seu negócio, pra quem você vende e como você escreve. Você pede as coisas em português e ele entrega no seu jeito, sem precisar explicar tudo de novo toda vez.
+</div>
+
+<div class="note warn"><strong>Não precisa saber programar.</strong> Você vai clicar em duas coisas, colar uma frase, e conversar. Se algum passo falhar, <strong>pare e mande um print pra quem te passou este link</strong>. Só isso, não precisa tentar mais nada: cada tropeço aqui é problema nosso pra corrigir, não seu.</div>
 
 <h3>Parte 1: só se você ainda não tem o Claude Code</h3>
 <p class="trilha">Já usa o Claude Code? <strong>Pule direto pra Parte 2.</strong></p>
 
 <div class="step">
-  <div class="head"><div class="num">1</div><h2>Instalar o Claude Code</h2></div>
+  <div class="head"><div class="num">1</div><h2>Instalar o Claude Code</h2><span class="min">3 min</span></div>
   <div class="body">
     <p>É o programa que roda tudo. Em uma frase: é o Claude funcionando dentro do seu computador, com acesso às suas pastas.</p>
     <p>Baixe em <a href="https://claude.com/code">claude.com/code</a> e entre com sua conta no fim da instalação.</p>
-    <p><strong>Deu certo?</strong> Abra o programa. Se ele abrir e pedir pra você escolher uma pasta, está instalado.</p>
+    <p class="ok"><strong>Como saber que deu certo:</strong> abra o programa. Se aparecer uma caixa escrito "Descreva uma tarefa ou faça uma pergunta", está instalado.</p>
     <label class="chk"><input type="checkbox"> Claude Code instalado</label>
   </div>
 </div>
 
 <h3>Parte 2: instalar o sistema</h3>
-<p class="trilha">Aqui todo mundo passa.</p>
+<p class="trilha">Esta é a única parte com clique. O resto é conversa.</p>
 
 <div class="step">
-  <div class="head"><div class="num">2</div><h2>Criar a pasta e apontar o programa pra ela</h2></div>
+  <div class="head"><div class="num">2</div><h2>Criar a pasta</h2><span class="min">1 min</span></div>
   <div class="body">
-    <p>Crie uma pasta <strong>nova e vazia</strong> onde você quiser, com o nome que quiser. Pode ser na Área de Trabalho.</p>
-    <p>Agora abra o <strong>Claude Code</strong> e <strong>escolha essa pasta</strong>. É o mesmo gesto de abrir um projeto num programa qualquer: você aponta pra pasta e pronto.</p>
-    
-    <label class="chk"><input type="checkbox"> Programa apontado pra pasta nova</label>
+    <p>Crie uma pasta <strong>nova e vazia</strong> na Área de Trabalho, com o nome que você quiser. Pode ser o nome da sua empresa.</p>
+    <p>É aqui que o sistema vai morar. Deixe vazia mesmo, não coloque nada dentro.</p>
+    <p class="ok"><strong>Como saber que deu certo:</strong> a pasta aparece na Área de Trabalho e está vazia.</p>
+    <label class="chk"><input type="checkbox"> Pasta criada</label>
   </div>
 </div>
 
 <div class="step">
-  <div class="head"><div class="num">3</div><h2>Pedir pra instalar e configurar</h2></div>
+  <div class="head"><div class="num">3</div><h2>Apontar o Claude Code pra ela</h2><span class="min">1 min</span></div>
   <div class="body">
-    <p>Cole isto e mande:</p>
+    <p>Abra o Claude Code. Lá <strong>embaixo</strong>, logo acima da caixa de escrever, tem uma linha com o nome da pasta atual e um <strong>ícone de pasta</strong> do lado.</p>
+    <div class="foto" data-slot="1"><span>a barra de baixo, com o ícone de pasta destacado</span></div>
+    <p>Clique nesse ícone. Abre um menu com as pastas recentes e, no fim dele, a opção <strong>"Abrir pasta..."</strong>.</p>
+    <div class="foto" data-slot="2"><span>o menu aberto, com "Abrir pasta..." destacado</span></div>
+    <p>Clique em <strong>"Abrir pasta..."</strong>, ache a pasta que você criou, e clique em <strong>"Selecionar pasta"</strong>.</p>
+    <div class="foto" data-slot="3"><span>o seletor de pasta, com o botão "Selecionar pasta" destacado</span></div>
+    <p class="ok"><strong>Como saber que deu certo:</strong> o nome da sua pasta aparece naquela linha de baixo, no lugar do que estava antes.</p>
+    <label class="chk"><input type="checkbox"> Claude Code apontado pra minha pasta</label>
+  </div>
+</div>
+
+<div class="step">
+  <div class="head"><div class="num">4</div><h2>Pedir pra instalar</h2><span class="min">2 min</span></div>
+  <div class="body">
+    <p>Cole isto na caixa de escrever e mande:</p>
     <pre><code>Instala esse repositório pra mim diretamente nesta pasta, sem
 criar outra pasta dentro dela. Depois lê o CLAUDE.md pra começar:
 
 https://github.com/pedroguedespro/Mercatus-OS</code></pre>
-    <p>Ele baixa, organiza tudo e <strong>já começa a te entrevistar</strong> sobre o seu negócio. É só ir respondendo, uma pergunta por vez.</p>
+    <p>Ele baixa, organiza tudo e <strong>já começa a te entrevistar</strong>. Você não precisa digitar mais nenhum comando.</p>
+    <p class="ok"><strong>Como saber que deu certo:</strong> ele te cumprimenta e pergunta <strong>o seu nome</strong>. Se isso aconteceu, daqui pra frente é só conversa.</p>
     <div class="note"><strong>Não precisa instalar mais nada</strong>, nem criar outra conta além da do Claude Code. Funciona igual no Mac e no Windows.</div>
     <label class="chk"><input type="checkbox"> Instalado, e a entrevista começou</label>
   </div>
 </div>
 
-<h3>Parte 3: usar</h3>
-<p class="trilha">A partir daqui é conversa, não comando. Se em algum momento o programa parecer que não sabe nada do seu negócio, é porque ele foi aberto fora da pasta. Aponte ele de novo pra pasta certa.</p>
+<h3>Parte 3: a entrevista</h3>
+<p class="trilha">A partir daqui é conversa, não comando.</p>
 
 <div class="step">
-  <div class="head"><div class="num">4</div><h2>Responder a entrevista</h2></div>
+  <div class="head"><div class="num">5</div><h2>Responder</h2><span class="min">15 min</span></div>
   <div class="body">
-    <p>Uma pergunta por vez, no seu jeito de falar. Quanto mais você contar, melhor fica o resultado. Reserve uns 15 minutos: é conversa, não formulário.</p>
-    <p>Se ele perguntar se você tem arquivos da empresa no computador, pode dizer o nome do arquivo ou da pasta, ou dizer que não tem. Os dois funcionam.</p>
-    <p>No fim, você tem a estrutura montada e um manual do que fazer a partir dali.</p>
-    <div class="note"><strong>Seu trabalho fica no seu computador.</strong> Nada sobe pra internet, e por enquanto é assim mesmo. Quando você quiser uma cópia de segurança na nuvem, a gente monta isso junto depois, com um passo a passo próprio. Não é necessário agora e não muda nada do que você já fez.</div>
+    <p>Uma pergunta por vez, no seu jeito de falar. Responda como se estivesse explicando o negócio pra alguém que vai trabalhar com você. <strong>Quanto mais você contar, melhor fica.</strong></p>
+    <p>Se ele perguntar se você tem arquivo ou pasta da empresa no computador, pode dizer o nome. Ele lê e já começa sabendo. Se não tiver nada, diga que não: a conversa supre.</p>
+    <p><strong>Dá pra parar no meio e voltar depois.</strong> E se ele sugerir uma estrutura de pastas e você não souber escolher, pode pedir ajuda. Ele recomenda e explica o porquê.</p>
+    <p class="ok"><strong>Como saber que deu certo:</strong> no fim ele lista o que criou e diz qual é o próximo passo.</p>
     <label class="chk"><input type="checkbox"> Setup concluído</label>
   </div>
 </div>
 
-<div class="note" style="border-color:var(--ac)"><strong>Terminou o setup?</strong> O manual de uso está aqui: <a href="/manual/">como usar o Mercatus OS no dia a dia</a>. Ele explica o que pedir, com exemplos, sem jargão.</div>
+<div class="note destaque"><strong>Terminou?</strong> O manual de uso está aqui: <a href="/manual/">como usar o Mercatus OS no dia a dia</a>. Ele mostra o que dá pra pedir, com exemplos. Você não precisa decorar nada.</div>
 
-<div class="note"><strong>Usa Codex ou outro assistente?</strong> O sistema foi feito e testado no Claude Code. Os outros conseguem ler o mesmo contexto, mas isso ainda não passou por teste, então por enquanto siga pelo Claude Code.</div>
+<div class="note warn"><strong>A regra que resolve quase todo problema:</strong> abra o Claude Code sempre apontando pra essa pasta. Se um dia ele parecer que não sabe nada do seu negócio, é porque foi aberto em outro lugar. Refaça o passo 3.</div>
 
-<h3>Depois, quando fizer sentido</h3>
-<p class="trilha">Nada disso é necessário pra começar.</p>
+<h3>O que não é necessário agora</h3>
+<p class="trilha">Você já pode trabalhar. Isto aqui é pra depois.</p>
 
 <div class="step">
   <div class="body" style="padding-left:0">
-    <p><strong>Cópia de segurança na nuvem.</strong> Pra não perder nada se o computador der problema, e pra trabalhar da mesma coisa em mais de uma máquina. Envolve criar uma conta gratuita no GitHub e instalar o Git.</p>
-    <p><strong>Puxar o que a empresa já tem.</strong> Se o seu negócio já guarda coisas em algum lugar, dá pra trazer pra cá.</p>
-    <p><strong>Mais de um negócio.</strong> Se você toca mais de uma frente, cada uma fica separada, sem misturar contexto.</p>
-    <p>Quando chegar a hora de qualquer um desses, é só pedir: <code>quero guardar isso na nuvem</code>. Você recebe o passo a passo na hora.</p>
+    <p><strong>Guardar na nuvem.</strong> Hoje tudo fica só no seu computador, e se ele der problema isso se perde. Quando quiser resolver, peça <code>quero guardar meu trabalho na nuvem</code> e ele te conduz do começo ao fim.</p>
+    <p><strong>Trazer o que a empresa já tem.</strong> Contrato, planilha, apresentação. É só apontar e pedir pra ele ler.</p>
+    <p><strong>Mais de um negócio.</strong> Hoje é um por pasta. Se você toca duas frentes, faça uma bem feita primeiro.</p>
+    <p><strong>Usa Codex ou outro assistente?</strong> O sistema foi feito e testado no Claude Code. Os outros leem o mesmo contexto, mas isso ainda não passou por teste.</p>
   </div>
 </div>
 
@@ -133,7 +156,7 @@ https://github.com/pedroguedespro/Mercatus-OS</code></pre>
 </div>
 <script>
 (function(){
-  var K='mercatus-os-instalar-v2',
+  var K='mercatus-os-instalar-v3',
       boxes=[].slice.call(document.querySelectorAll('input[type=checkbox]')),
       fill=document.getElementById('fill'),count=document.getElementById('count'),saved={};
   try{ saved=JSON.parse(localStorage.getItem(K))||{} }catch(e){}
