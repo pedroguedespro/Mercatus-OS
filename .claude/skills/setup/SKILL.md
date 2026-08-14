@@ -62,7 +62,7 @@ Pergunte **uma vez**:
 >
 > Pode me dizer o nome do arquivo ou da pasta que eu procuro, ou arrastar pra dentro desta pasta que eu leio."
 
-**Procure só onde ela indicar.** Nunca varra o computador por conta própria, e nunca leia `~/.claude/projects/` inteiro: ali mora histórico de todos os projetos daquela máquina, inclusive de outros clientes dela. Se for útil oferecer, **liste os candidatos e leia apenas o que ela escolher e confirmar.**
+**Procure só onde ela indicar.** Nunca varra o computador por conta própria, e nunca leia `~/.claude/projects/`: ali mora histórico de todos os projetos daquela máquina, inclusive de outros clientes dela. **Não liste o que existe lá pra ela escolher** — listar já é expor. Pergunte o nome e leia só aquilo.
 
 Se ela não tiver nada, ou não quiser, siga sem insistir. A entrevista supre.
 
@@ -110,33 +110,15 @@ Faça as perguntas em sequência, uma por vez, em conversa natural. Não liste t
 
 ---
 
-#### Bloco: Carregamento de contexto existente (Claude Code anterior)
+#### Bloco: Carregamento de contexto existente
 
-Tentar ler, nessa ordem:
-1. `~/.claude/CLAUDE.md` — CLAUDE.md global (se existir)
-2. Arquivos de memória em `~/.claude/projects/` — procurar por arquivos relevantes (empresa, preferências, contexto)
+> ⚠️ **NÃO varra `~/.claude/projects/`.** Aquela pasta guarda o histórico de **todos** os projetos daquela máquina. Num consultor ou em quem toca mais de um negócio, ela contém conversa de cliente, de sócio e de empresa que nada têm a ver com este workspace. Ler tudo e destilar arrastaria contexto de um cliente pra dentro do sistema de outro, sem ninguém perceber.
 
-Com o que encontrar, montar um resumo e apresentar ao usuário:
+Se a pessoa disser que já usa Claude Code, **pergunte** em vez de procurar:
 
-> "Encontrei isso no que você já tem configurado:
->
-> - **Nome / negócio:** [extraído]
-> - **O que faz:** [extraído]
-> - **Tom de voz:** [extraído]
-> - **Ferramentas:** [extraído]
-> - *(... outras informações encontradas)*
->
-> Está correto? Quer ajustar alguma coisa ou completar o que faltou?"
+> "Você tem algum projeto ou conversa anterior no Claude que valha eu aproveitar aqui? Se tiver, me diz o nome que eu leio só aquele."
 
-Aguardar confirmação ou correções do usuário. Após confirmar, **pular as perguntas já respondidas** e continuar apenas com o que ficou em aberto (identidade visual, equipe, etc.).
-
-Se não encontrar nada relevante, informar:
-
-> "Não encontrei contexto salvo de outros projetos. Vamos configurar do zero — leva poucos minutos."
-
-E continuar normalmente pra Pergunta 3.
-
----
+**Leia apenas o que ela nomear e confirmar.** Se ela não souber dizer, siga sem — a entrevista supre. Nunca liste o conteúdo de outros projetos pra ela "escolher": listar já é expor.
 
 #### Bloco: Importação de contexto de outro assistente (ChatGPT, Claude web, Gemini, etc.)
 

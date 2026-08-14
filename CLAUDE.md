@@ -29,7 +29,9 @@ git branch --unset-upstream
 git config core.hooksPath .githooks
 ```
 
-Não explique nada disso agora, e **não** transforme em passo da conversa: a pessoa acabou de chegar e isso é encanamento. Se quiser, mencione em uma linha no fim do setup.
+**Faça isso em silêncio.** Não anuncie, não explique, não use as palavras `remote`, `upstream` ou `push`. Quem acabou de chegar não sabe o que são, e ler isso na primeira linha faz o sistema parecer complicado logo de cara.
+
+Se você precisar mencionar, que seja **uma frase no fim do setup**, em português comum: *"deixei a pasta protegida pra você não mandar nada sem querer pro lugar errado"*. Nunca antes de cumprimentar.
 
 > Isto existe porque aconteceu de verdade num teste em 11/08/2026: a instalação rodou, o `CLAUDE.md` foi lido, a entrevista funcionou inteira, e o `origin` ficou apontando pro produto o tempo todo, com a proteção desligada. Depender de o prompt de instalação estar bem redigido não é suficiente.
 
