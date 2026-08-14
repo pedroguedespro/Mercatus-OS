@@ -37,7 +37,8 @@ input[type=checkbox]{width:1.1rem;height:1.1rem;accent-color:var(--ac);cursor:po
 .warn{border-color:var(--warn)}
 .warn strong{color:var(--warn)}
 .destaque{border-color:var(--ac)}
-.foto{background:var(--code);border:1px dashed var(--ln);border-radius:8px;min-height:100px;display:grid;place-items:center;margin:.8rem 0;padding:1rem}
+.foto{display:none}
+.foto.tem-img{background:var(--code);border:1px solid var(--ln);border-radius:8px;display:block;margin:.8rem 0;padding:0;overflow:hidden}
 .foto span{color:var(--mut);font-size:.82rem;text-align:center}
 .foto img{width:100%;height:auto;border-radius:6px;display:block}
 .bar{position:sticky;top:0;background:var(--bg);padding:.7rem 0 1rem;margin:-2rem 0 1.5rem;z-index:5;border-bottom:1px solid var(--ln)}
@@ -78,13 +79,14 @@ footer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--ln);color
 </div>
 
 <h3>Parte 2: instalar o sistema</h3>
-<p class="trilha">Esta é a única parte com clique. O resto é conversa.</p>
+<p class="trilha">Esta é a única parte técnica. Depois dela é tudo conversa.</p>
 
 <div class="step">
   <div class="head"><div class="num">2</div><h2>Criar a pasta</h2><span class="min">1 min</span></div>
   <div class="body">
     <p>Crie uma pasta <strong>nova e vazia</strong> na Área de Trabalho, com o nome que você quiser. Pode ser o nome da sua empresa.</p>
     <p>É aqui que o sistema vai morar. Deixe vazia mesmo, não coloque nada dentro.</p>
+    <div class="note">Se não souber criar: clique com o <strong>botão direito</strong> num espaço vazio da Área de Trabalho, escolha <strong>Novo</strong> e depois <strong>Pasta</strong>. Digite o nome e aperte Enter.</div>
     <p class="ok"><strong>Como saber que deu certo:</strong> a pasta aparece na Área de Trabalho e está vazia.</p>
     <label class="chk"><input type="checkbox"> Pasta criada</label>
   </div>
@@ -127,7 +129,7 @@ https://github.com/pedroguedespro/Mercatus-OS</code></pre>
   <div class="body">
     <p>Uma pergunta por vez, no seu jeito de falar. Responda como se estivesse explicando o negócio pra alguém que vai trabalhar com você. <strong>Quanto mais você contar, melhor fica.</strong></p>
     <p>Se ele perguntar se você tem arquivo ou pasta da empresa no computador, pode dizer o nome. Ele lê e já começa sabendo. Se não tiver nada, diga que não: a conversa supre.</p>
-    <p><strong>Dá pra parar no meio e voltar depois.</strong> E se ele sugerir uma estrutura de pastas e você não souber escolher, pode pedir ajuda. Ele recomenda e explica o porquê.</p>
+    <p><strong>Reserve os 15 minutos de uma vez.</strong> Se ele sugerir uma estrutura de pastas e você não souber escolher, pode pedir ajuda: ele recomenda e explica o porquê.</p>
     <p class="ok"><strong>Como saber que deu certo:</strong> no fim ele lista o que criou e diz qual é o próximo passo.</p>
     <label class="chk"><input type="checkbox"> Setup concluído</label>
   </div>
